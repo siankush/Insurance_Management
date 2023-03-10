@@ -239,6 +239,7 @@ class UsersController extends AppController
         if ($result && $result->isValid()) {
             $user = $this->Authentication->getIdentity();
             // dd($user);
+            // dd($user);
             if ($user->auth == 0) {
                 // $redirect = $this->request->getQuery('redirect', [
                 //     'controller' => 'Insurance-Companies',

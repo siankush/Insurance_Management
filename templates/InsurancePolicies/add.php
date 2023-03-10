@@ -72,7 +72,7 @@ div {
                     echo $this->Form->control('insurance_company_id',['class'=>'formdesign']);
                     echo $this->Form->control('name',['class'=>'formdesign']);                    
                     echo $this->Form->control('premium',['class'=>'formdesign']);      
-                    echo $this->Form->control('image_file', ['type' => 'file','id'=>'image']);
+                    echo $this->Form->control('image_file', ['type' => 'file','class'=>'formdesign','id'=>'image']);
               
                 ?>
             </fieldset>

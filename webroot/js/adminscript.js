@@ -303,7 +303,8 @@ ak(document).on("click", ".get-policyinfo", function(){
            // $('#brand').val(car['brand']['name']);
            $('#policylisting_id').val(policylisting['id']);
           //  $('#image').val(policylisting['image']);
-          document.getElementById('image-preview').src = data.image_url;
+             var image = policylisting['image'];
+             document.querySelector('#showimg').setAttribute('src', '/img/' +image);
 
          
     }

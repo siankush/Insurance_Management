@@ -151,6 +151,9 @@ img#policyimg {
      <div class="insurancesCompany view content">
        <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">INSURANCE USER EDIT</h1>
 
+       <?= $this->Html->image(h($insurancePolicy->image), array('width' => '200px' ,'id' => 'showimg')) ?>
+
+       
        <?= $this->Form->create($insurancePolicy,['enctype'=>'multipart/form-data','id'=>'insuranceform']) ?>
        <input type="hidden" id="policylisting_id" name="id">
        

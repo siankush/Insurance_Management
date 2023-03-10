@@ -77,11 +77,13 @@ class ContactListingsController extends AppController
                     $contactListings = $this->paginate($this->ContactListings->find('all')
     ->contain('CompanyAssets')
     ->where(['ContactListings.user_id' => $id]),
-    ['limit' => 10]
+    ['limit' => 10,
+    'order' => [
+        'id' => 'desc',
+    ],    
+    ]
 );
 
-                
-                   
                    
                     // $contacts = $this->ContactListings->find('all')->where(['user_id'=> $this])
 
