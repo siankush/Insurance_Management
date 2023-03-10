@@ -20,7 +20,7 @@
                      <!-- Check -->
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">January - March</a>
+                      <a class="dropdown-item" href="#">January - march</a>
                       <a class="dropdown-item" href="#">March - June</a>
                       <a class="dropdown-item" href="#">June - August</a>
                       <a class="dropdown-item" href="#">August - November</a>
