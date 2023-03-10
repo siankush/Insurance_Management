@@ -37,7 +37,7 @@ a.text-primary {
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                 <?php echo $this->Form->create($user)?>
                 <div class="form-group">                  
-                  <?php echo $this->Form->control("first_name",['label'=>false,'id'=>'firstName', 'class'=>'form-control form-control-lg','placeholder'=>'Username','required'=>false]); ?>
+                  <?php echo $this->Form->control("first_name",['label'=>false,'id'=>'name', 'class'=>'form-control form-control-lg','placeholder'=>'Username','required'=>false]); ?>
                   <span id="uname"></span>
                 </div>
                 <div class="form-group">                  
@@ -49,7 +49,7 @@ a.text-primary {
                   <span id="uemail"></span>
                 </div>
                 <div class="form-group">                  
-                  <?php echo $this->Form->control("contact_number",['label'=>false,'id'=>'contact', 'class'=>'form-control form-control-lg','placeholder'=>'Phone','required'=>false]); ?>
+                  <?php echo $this->Form->control("contact_number",['label'=>false,'id'=>'phone', 'class'=>'form-control form-control-lg','placeholder'=>'Phone','required'=>false]); ?>
                   <span id="uphone"></span>
                 </div>
                 <div class="form-group">                  
@@ -84,3 +84,5 @@ a.text-primary {
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+
+  <?= $this->Html->script('script') ?>
