@@ -84,3 +84,4 @@ a.text-primary {
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <?= $this->Html->script('script') ?>

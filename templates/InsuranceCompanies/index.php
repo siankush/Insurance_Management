@@ -88,7 +88,7 @@ a.addcomp {
                     </td>
                     <td class="actions">
                         <!-- <?= $this->Html->link(__(''), ['action' => 'view', $insuranceCompany->id],['class'=>'fa-solid fa-eye']) ?> -->
-                        <i class="fa-solid fa-pen-to-square get-companyinfo" data-bs-toggle="modal" data-bs-target="#myModalcompany" style="color: orange; font-size: 18px;" editcompany-id ="<?= $insuranceCompany->id ?>"></i>
+                        <i class="fa-solid fa-pen-to-square get-companyinfo" data-bs-toggle="modal" data-bs-target="#myModalcompany" style="color: orange; font-size: 18px; cursor: pointer;" editcompany-id ="<?= $insuranceCompany->id ?>"></i>
                         <i class="fa-solid fa-trash-can delete-insurance-company" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $insuranceCompany->deleted?>" deleteinsurance-id ="<?= $insuranceCompany->id?>"></i>         
                         <!-- <i class="fa-solid fa-trash delete-user" style="color: red; font-size: 18px;" <?= $insuranceCompany->id?>></i>                           -->
 

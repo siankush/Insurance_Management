@@ -51,6 +51,12 @@ th {
     height: 60px;
     border-radius: 100%;
 }
+.input.select.error {
+  display: none !important;
+}
+#insurancesscomapny {
+  display: none;
+}
 </style>
 <div class="row">
     <!-- <aside class="column"> -->
@@ -80,7 +86,9 @@ th {
                 </tr>
                 <tr>
                     <th><?= __('Phone') ?></th>
-                    <td><?= h($contactListings->phone) ?></td>
+                    <td.input.select.error {
+  display: none;
+}><?= h($contactListings->phone) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Address') ?></th>
@@ -199,23 +207,29 @@ foreach ($companyAssetss as $company) {
         <th>Insurance Policy</th>
         <th>Premium</th>
         <th>Term Length</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
     <?php $n=1; ?>
 
     <?php foreach($companyAssetss as $company){ ?>
+      <?php if($company->deleted == 1) : ?>
 
-      <tr>
+      <tr id="data<?php echo $company->contact_listing_id;?>">
         <td><?php echo $n ?></td>
         <td><?php   echo $this->Html->image($company->insurance_policy->image);  ?></td>
         <td><?php   echo $company->insurance_company->name; ?></td>
         <td><?php   echo $company->insurance_policy->name;  ?></td>
         <td><?php   echo $company->insurance_policy->premium; ?></td>
         <td><?php   echo $company->term_length; ?></td>
+        <td>
+          <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted?>" deletepolicy-id ="<?= $contactListings->id?>"></i>                          
+         </td>
       </tr>
      
     </tbody>
+    <?php endif; ?>
     <?php $n++; ?>
   <?php } ?>
 
@@ -256,7 +270,7 @@ foreach ($companyAssetss as $company) {
                 <?php echo $this->Form->control("insurance_policy_id",['id'=>'', 'options' => $insurancePolicies,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
               </div>
                 <div class="form-group">     
-                <?php echo $this->Form->control("premium",['id'=>'', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
+                <?php echo $this->Form->control("premium",['label'=> false,'id'=>'insurancesscomapny', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','required'=>false]); ?>
                 </div>
                 <label>Term Length</label><br>
                   <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month']) ?>
@@ -281,3 +295,53 @@ foreach ($companyAssetss as $company) {
     </div>
   </div>
 </div>
+
+<script>
+  $(document).on("click", ".delete-policy", function(){
+    var csrfToken = $('meta[name="csrfToken"]').attr('content');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
+      }
+    });
+    var formData = $(this).attr("deletepolicy-id");
+    var statusData = $(this).attr("status-id");
+   
+      // alert(formData+statusData);
+      // alert(formData);
+      // var statusData = $(this).attr("status-id");
+  
+        swal({
+        title: "Are you sure to delete this  of ?",
+        text: "Delete Confirmation?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Delete",
+        closeOnConfirm: false
+        },
+        function() {
+              $.ajax({
+                  url: "http://localhost:8765/ContactListings/deletepolicy/"+formData,
+                  data: {'id':formData, 'deleted': statusData},
+                  type: "JSON",
+                  method: "post",
+                  success:function(response){
+                    
+                    swal("Done!","It was succesfully deleted!","success");
+                    var dataArr = JSON.parse(response);
+                    if(dataArr.status ==1 ){
+                      $("#data"+formData).hide();
+          
+                    }
+                  }
+              }).done(function(data) {
+                  swal("Deleted!", "Data successfully Deleted!", "success");
+                })
+                .error(function(data) {
+                  swal("Oops", "We couldn't connect to the server!", "error");
+                });
+                    }
+        )
+  });  
+</script>  

@@ -109,7 +109,7 @@ class UsersController extends AppController
                 
 
                 
-            } elseif ($user->auth == 1) {
+            } elseif ($user->auth == 1 && $user->deleted == 1) {
                 // $redirect = $this->request->getQuery('redirect', [
                 //     'controller' => 'users',
                 //     'action' => 'login',

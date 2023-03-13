@@ -68,22 +68,25 @@ class ContactListingsTable extends Table
             ->scalar('name')
             ->maxLength('name', 50)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->notEmptyString('name','please enter name');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->notEmptyString('email','please enter email')
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table',
+            'message'=>'Email already exists',
+        ]);
 
         $validator
             ->scalar('phone')
-            ->maxLength('phone', 11)
+            ->maxLength('phone', 10)
             ->requirePresence('phone', 'create')
-            ->notEmptyString('phone')
+            ->notEmptyString('phone','please enter phone')
             ->add('phone', [
                 'phone' => [
-                    'rule' => ['numeric']
+                    'rule' => ['numeric'],
+                    'message' => ['please enter valid phone'],
                 ]
             ])  ;      
 
@@ -91,7 +94,7 @@ class ContactListingsTable extends Table
             ->scalar('address')
             ->maxLength('address', 50)
             ->requirePresence('address', 'create')
-            ->notEmptyString('address');
+            ->notEmptyString('address','please enter address');
 
         $validator
             ->scalar('status')

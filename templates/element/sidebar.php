@@ -65,11 +65,11 @@
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
               <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
+                <!-- <span class="input-group-text" id="search">
                   <i class="icon-search"></i>
-                </span>
+                </span> -->
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
             </div>
           </li>
         </ul>
@@ -138,11 +138,11 @@
               </a>
             </div>
           </li>
-          <!-- <li class="nav-item nav-settings d-none d-lg-flex">
+          <li class="nav-item nav-settings d-none d-lg-flex">
             <a class="nav-link" href="#">
               <i class="icon-ellipsis"></i>
             </a>
-          </li> -->
+          </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>

@@ -213,8 +213,42 @@ class ContactListingsController extends AppController
 //    echo count($companyAsset);
 //     die;
         // dd($companyAsset);
+
+            
+    
         
         $this->set(compact('contactListings','companyAsset','companyAssetss','result','insuranceCompanies','insurancePolicies','insurancePremium'));
+    }
+    public function deletepolicy($id = null) {
+        $this->loadModel('CompanyAssets');
+        // $companyAsset= $this->CompanyAssets->find('all')->contain(['ContactListings'])->where(['contact_listing_id'=> $id])->all();        
+        
+        // $companyAsset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=> $id])->all();        
+        if ($this->request->is('post')) {     
+                $this->autoRender = false;
+            //    $id = $this->request->getData('id');
+                  
+            //     $deleted = $this->request->getData('deleted');
+            
+                $companyasset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=>$id])->first();
+                if($companyasset->deleted == 1){
+
+                    $companyasset['deleted'] = 0;
+                    $companyasset['policy_status'] = 0;
+
+                }else{
+
+                    $companyasset['deleted'] = 1;
+                }
+
+                if($this->CompanyAssets->save($companyasset)){
+                    echo json_encode(array(
+                        "status" => 1,
+                        "message" => "The contactlisting saved. Please, try again.",
+                    ));
+                    exit;
+                }           
+            }
     }
 
     /**

@@ -108,7 +108,7 @@ img#policyimg {
                     <td class="actions">
                         <?= $this->Html->link(__(''), ['action' => 'view', $insurancePolicy->id],['class'=>'fa-solid fa-eye']) ?>
                         
-                        <i class="fa-solid fa-pen-to-square get-policyinfo" data-bs-toggle="modal" data-bs-target="#myModalpolicy" style="color: orange; font-size: 18px;" editpolicy-id ="<?= $insurancePolicy->id ?>"></i>
+                        <i class="fa-solid fa-pen-to-square get-policyinfo" data-bs-toggle="modal" data-bs-target="#myModalpolicy" style="color: orange; font-size: 18px; cursor: pointer;" editpolicy-id ="<?= $insurancePolicy->id ?>"></i>
                         
                         <i class="fa-solid fa-trash-can delete-insurance-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $insurancePolicy->deleted?>" deletepolicy-id ="<?= $insurancePolicy->id?>"></i>                          
 
