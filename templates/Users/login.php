@@ -67,66 +67,10 @@ h6.font-weight-light {
   <script>
   
   $(document).ready(function(){
-    
-
-
-    
+        
     var email_err = true;
           
     var pass_err = true;
-    
-    
-
-    // $('#uname').hide();
-    // $('#firstName').keyup(function(){
-    //     username_check();
-    // });
-
-    // function username_check(){
-    //     var user_val = $('#firstName').val();                
-
-    //     if(user_val.length == ''){
-    //         $('#uname').show();
-    //         $('#uname').html("Please fill first name");
-    //         $('#uname').focus();
-    //         $('#uname').css("color","red");
-    //         fname_err = false;
-    //         return false;
-
-    //     }else{
-    //         $('#uname').hide();
-    //     }
-
-    //     if((user_val.length < 3) || (user_val.length > 20)){
-    //         $('#uname').show();
-    //         $('#uname').html("please enter user name between 3 and 20");
-    //         $('#uname').focus();
-    //         $('#uname').css("color","red");
-    //         fname_err = false;
-    //         return false;
-
-    //     }else{
-    //         $('#uname').hide();
-    //     }
-
-
-    //     if(!isNaN(user_val)){
-    //         $('#uname').show();
-    //         $('#uname').html("please enter valid name");
-    //         $('#uname').focus();
-    //         $('#uname').css("color","red");
-    //         fname_err = false;
-    //         return false;
-
-    //     }else{
-    //         $('#uname').hide();
-    //     }
-        
-    // }
-
-                //----------------------last name validation--------------
-
-    
 
                 //----------------------email validation--------------
     $('#uemail').hide();
@@ -137,18 +81,6 @@ h6.font-weight-light {
     function user_mail_check(){
         var email_val = $('#email').val(); 
         var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;               
-
-        // $.ajax({
-        //     type:'post',
-        //     url: 'http://localhost:8765/users/register',
-        //     data: {
-        //         'check_Emailbtn':1,
-        //         'email':email_val,
-        //     },
-        //     success: function (response) {
-        //         console.log(response);
-        //     }
-        // });
 
         if(email_val.length == ''){
             $('#uemail').show();
@@ -279,3 +211,5 @@ h6.font-weight-light {
 
 
   </script>
+
+

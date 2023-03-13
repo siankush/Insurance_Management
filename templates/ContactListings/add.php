@@ -29,8 +29,8 @@
                 <div class="form-group">                
                   <?php echo $this->Form->control("email",['label'=>false,'id'=>'email', 'class'=>'form-control form-control-lg','placeholder'=>'Email','required'=>false]); ?>                  
                   <span id="uemail"></span>
-
                 </div>
+                
                 <div class="form-group">                  
                 <?php echo $this->Form->control("phone",['label'=>false,'id'=>'phone', 'class'=>'form-control form-control-lg','placeholder'=>'Phone','required'=>false]); ?>
                 <span id="uphone"></span>
@@ -77,5 +77,4 @@
   <!-- plugins:js -->
 
 
-
-  
+  <?= $this->Html->script('script1') ?>

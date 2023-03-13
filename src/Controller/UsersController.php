@@ -104,9 +104,7 @@ class UsersController extends AppController
                 // ]);
                 $this->Flash->error(__('you are not authorised'));
 
-                return $this->redirect('/users/logout');
-
-                
+                return $this->redirect('/users/logout');                
 
                 
             } elseif ($user->auth == 1) {
