@@ -95,8 +95,8 @@ a.addcomp {
                     </td>
 
                 </tr>
-                <?php endif; ?>
                 <?php $n++; ?>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -118,25 +118,19 @@ a.addcomp {
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-       </div>
-
+     
        <!-- Modal body -->
        <div class="modal-body">
         
    
    <div class="column-responsive column-80">
      <div class="insurancesCompany view content">
-       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">INSURANCE USER EDIT</h1>
+       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:25px;color:white">INSURANCE COMPANY EDIT</h1>
 
        <?= $this->Form->create($insuranceCompany,['id'=>'formid']) ?>
        <input type="hidden" id="companylisting_id" name="id">
        
            <fieldset>
-               <legend><?= __('Edit User') ?></legend>
                <?php
                    echo $this->Form->control('name',['class'=>'policy','id'=>'name']);
 

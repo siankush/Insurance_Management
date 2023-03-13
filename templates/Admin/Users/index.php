@@ -165,6 +165,7 @@ button#useradd {
                     <th>EMAIL</th>
                     <th>PHONE.NO</th>
                     <th>ADDRESS</th>
+                    <th>TOTAL POLICY SALE </th>
                     <th>STATUS</th>
                     <th>CREATED AT</th>
                     <th class="actions">ACTIONS</th>
@@ -181,6 +182,7 @@ button#useradd {
                     <td><?= h($user->last_name) ?></td>
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->contact_number) ?></td>
+                    <td><?= h($user->address) ?></td>
                     <td><?= h($user->address) ?></td>
                     <td class="align-middle text-sm">
                           <!-- <?= h($contactlist->status); ?> -->
@@ -199,9 +201,8 @@ button#useradd {
                     </td>
                    
             </tr>
-            <?php endif; ?>
             <?php $n++; ?>
-
+            <?php endif; ?>
             <?php endforeach; ?>
 
             </tbody>
@@ -224,11 +225,7 @@ button#useradd {
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-       </div>
+     
 
        <!-- Modal body -->
        <div class="modal-body">
@@ -236,13 +233,12 @@ button#useradd {
    
    <div class="column-responsive column-80">
      <div class="insurancesCompany view content">
-       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">INSURANCE USER EDIT</h1>
+       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:25px;color:white">INSURANCE USER EDIT</h1>
 
        <?= $this->Form->create($user,['id'=>'formid']) ?>
        <input type="hidden" id="userlisting_id" name="id">
        
            <fieldset>
-               <legend><?= __('Edit User') ?></legend>
                <?php
                    echo $this->Form->control('first_name',['class'=>'policy','id'=>'first_name']);
                    echo $this->Form->control('last_name',['class'=>'policy','id'=>'last_name']);

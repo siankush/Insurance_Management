@@ -15,7 +15,18 @@ th {
 td , td.py-1{
     font-size: 17px !important;
 }
-
+a.badge.badge-sm.bg-gradient-secondary {
+    background: #d42d00;
+    font-size: 14px;
+    border-radius: 10px;
+    color: white !important;
+}
+a.badge.badge-sm.bg-gradient-success {
+    background: #00c583;
+    font-size: 14px;
+    border-radius: 10px;
+    color: white !important;
+}
 .stretch-card > .card {
     width: 100% !important;
     min-width: 100% !important;

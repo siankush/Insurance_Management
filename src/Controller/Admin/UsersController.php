@@ -24,7 +24,7 @@ class UsersController extends AppController
         $this->loadModel('InsurancePolicies');
         $this->loadModel('CompanyAssets');
                 $this->viewBuilder()->setLayout('admin');
-
+                $user = $this->Authentication->getIdentity();
                 $insuranceCompanies = $this->InsuranceCompanies->find('all')->all();
                 $insurancePolicies = $this->InsurancePolicies->find('all')->all();
                 $user = $this->Users->find('all')->all();

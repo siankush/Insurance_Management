@@ -15,6 +15,10 @@
     border: 11px solid #ff5722;
     margin-top: -85px;
 }
+input[type=file] {
+    display: block;
+    color: white;
+}
 legend {
     color: white;
     font-size: 30px;

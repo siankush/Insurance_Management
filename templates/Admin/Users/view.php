@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Contact No') ?></th>
-                    <td><?= h($user->contact_no) ?></td>
+                    <td><?= h($user->contact_number) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Address') ?></th>

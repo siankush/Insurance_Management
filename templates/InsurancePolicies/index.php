@@ -47,6 +47,9 @@ a.addcomp {
   border-radius: 4px;
   cursor: pointer;
 }
+input#image {
+    color: white !important;
+}
 .modal-body {
   position: relative;
   -webkit-box-flex: 1;
@@ -56,6 +59,10 @@ a.addcomp {
     padding-top: 1rem;
   padding-top: 0px;
   margin-top: -167px;
+}
+input[type=file] {
+    display: block;
+    color: white;
 }
 img#policyimg {
     width: 75px;
@@ -70,7 +77,7 @@ img#policyimg {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICIES LISTINGS</h1>
-<a href="/insurance-policies/add" class="addcomp">Add Company</a>
+<a href="/insurance-policies/add" class="addcomp">Add Policy</a>
 
         <table class="table table-hover" >
 
@@ -115,8 +122,8 @@ img#policyimg {
                     </td>
                     
                 </tr>
-                <?php endif; ?>
                 <?php $n++; ?>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -137,11 +144,6 @@ img#policyimg {
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-       </div>
 
        <!-- Modal body -->
        <div class="modal-body">
@@ -149,14 +151,13 @@ img#policyimg {
    
    <div class="column-responsive column-80">
      <div class="insurancesCompany view content">
-       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">INSURANCE USER EDIT</h1>
+       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:25px;color:white">INSURANCE POLICY EDIT</h1>
 
        <?= $this->Form->create($insurancePolicy,['enctype'=>'multipart/form-data','id'=>'insuranceform']) ?>
        <input type="hidden" id="policylisting_id" name="id">
        
            <fieldset>
-               <legend><?= __('Edit User') ?></legend>
-               <img id="image-preview" src="">
+           <?= $this->Html->image(h($insurancePolicy->image), array('width' => '200px' ,'id' => 'showimg')) ?>
 
                <?php
                     echo $this->Form->control('insurance_company_id',['options' => $insuranceCompanies,'class'=>'policy','id'=>'insurance_id']);

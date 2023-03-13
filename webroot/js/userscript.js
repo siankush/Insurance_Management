@@ -12,7 +12,7 @@ $(document).on("click", ".delete-user", function(){
       // var statusData = $(this).attr("status-id");
   
         swal({
-        title: "Are you sure to delete this  of ?",
+        title: "Are you sure to delete this ?",
         text: "Delete Confirmation?",
         type: "warning",
         showCancelButton: true,
