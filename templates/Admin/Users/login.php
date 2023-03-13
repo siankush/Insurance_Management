@@ -76,6 +76,8 @@
 </style>
 
 <div class="full_container">
+<?php echo $this->Flash->render(); ?>
+
          <div class="container">
             <div class="center verticle_center full_height">
                <div class="login_section">
@@ -84,6 +86,7 @@
                         <?php echo $this->Html->image('logo/logo.png',['width'=>'210']) ?>
                      </div>
                   </div>
+                  
                   <div class="login_form">
                   <?= $this->Form->create() ?>
                         <fieldset>

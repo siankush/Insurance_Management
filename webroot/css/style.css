@@ -67,7 +67,14 @@
 @import url(css/flaticon.css);
 @import url(css/font-awesome.min.css);
 
+body.modal-open .background-container{
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
 
+}
 a.badge.badge-sm.bg-gradient-success {
     background: #00c583;
     font-size: 14px;

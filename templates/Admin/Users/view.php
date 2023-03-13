@@ -6,13 +6,41 @@
  */
 ?>
 <?php echo $this->element('sidebar1') ?>
-
+<style>
+h3 {
+    font-size: 24px;
+    color: white;
+    line-height: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+th {
+    font-size: 20px;
+}
+td {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+</style>
 <div class="row">
    
     <div class="column-responsive column-80">
         <div class="insurancesCompany view content">
         <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">USERS VIEW</h1>
+        <?php $totalPrice = 0;
+foreach ($companyAssetss as $company) {
 
+    $totalPrice += $company->insurance_policy->premium;
+
+    // echo $company->insurance_policy->premium;
+} 
+// $totalPrice = $companyAssetss->sumOf('premium');
+?>
+
+                 
+                  <h3>Total Policies : <span class="badge"><?php echo count($companyAssetss); ?></span></h3>
+                  <h3>Total Premium Price : <span class="badge"><?php echo $totalPrice;; ?></span></h3>
             <table class="table">
             <tr>
                     <th><?= __('First Name') ?></th>

@@ -65,7 +65,7 @@ class InsurancePoliciesTable extends Table
             ->scalar('name')
             ->maxLength('name', 50)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->notEmptyString('name','Please fill the name');
 
         // $validator
         //     ->allowEmptyFile('image')

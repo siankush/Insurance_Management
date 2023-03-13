@@ -16,13 +16,14 @@ a {
 }
 a.addcomp {
     float: right;
-    /* margin-top: -92px; */
-    padding: 7px;
+    margin-top: -61px;
+    padding: 4px;
     width: 176px;
     border-radius: 20px;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     background: #ff5722;
     color: white;
+    text-align: center;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 25px;
@@ -69,6 +70,12 @@ img#policyimg {
     border-radius: 50px;
     height: 70px;
 }
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
 </style>
 <div class='container-fluid'>
     <?php echo $this->Flash->render(); ?>
@@ -77,17 +84,18 @@ img#policyimg {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICIES LISTINGS</h1>
+<?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search And Enter','id'=>'searchbox']) ?>
 <a href="/insurance-policies/add" class="addcomp">Add Policy</a>
 
-        <table class="table table-hover" >
+        <table class="table table-hover" id="datatablesSimple" >
 
             <thead>
             <tr id="#tablerow_user">
-            <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('insurance_company_id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('premium') ?></th>
-                    <th><?= $this->Paginator->sort('image') ?></th>
+            <th>Sr.No</th>
+                    <th>Insurance Company</th>
+                    <th>Policy Name</th>
+                    <th>Premium</th>
+                    <th>Image</th>
                     <th>Status</th>
                     <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -99,7 +107,7 @@ img#policyimg {
                 <?php if($insurancePolicy->deleted == 1) :?>
                 <tr id="data<?php echo $insurancePolicy->id;?>" class="tabledata_user">
                 <td><?php echo $n; ?></td>
-                    <td><?= $insurancePolicy->has('insurance_company') ? $this->Html->link($insurancePolicy->insurance_company->name, ['controller' => 'InsuranceCompanies', 'action' => 'view', $insurancePolicy->insurance_company->insurance_company_name]) : '' ?></td>                    
+                    <td><?= $insurancePolicy->has('insurance_company') ? $insurancePolicy->insurance_company->name : '' ?></td>                    
                     <td><?= h($insurancePolicy->name) ?></td>
                     <td><?= h($insurancePolicy->premium) ?></td>
                     <td><?= $this->Html->image($insurancePolicy->image,['id'=>'policyimg']); ?></td>
@@ -182,3 +190,45 @@ img#policyimg {
   </div>
 </div> 
 <?= $this->Html->script('adminscript') ?>
+<script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+
+</script>

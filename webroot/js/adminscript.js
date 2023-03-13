@@ -105,7 +105,7 @@ ak(document).on("click", ".get-userinfo", function(){
         // alert(data);
         
            if (data['status'] == 0) {
-                alert(data['message']);
+                // alert(data['message']);
             } else {
              swal("Good job!", "The user has been saved!", "success");
    

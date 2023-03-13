@@ -77,7 +77,11 @@ class ContactListingsController extends AppController
                     $contactListings = $this->paginate($this->ContactListings->find('all')
     ->contain('CompanyAssets')
     ->where(['ContactListings.user_id' => $id]),
-    ['limit' => 10]
+    ['limit' => 10,
+     'order' =>[
+        'id'=>'desc',
+     ]
+    ]
 );
 
                 
@@ -192,15 +196,20 @@ class ContactListingsController extends AppController
         // dd($insuranceCompany);
         $insuranceCompanies = $this->InsuranceCompanies->find('list', ['keyField' => 'id', 'valueField' => 'name'])->where(['status'=>1]);  
         // $insuranceCompanies = $this->paginate($this->InsuranceCompanies);
-        $insurancePolicies = $this->InsurancePolicies->find('list', ['keyField' => 'id', 'valueField' => 'name'])->where(['status'=>1]);   
-        $insurancePremium = $this->InsurancePolicies->find('list', ['keyField' => 'id', 'valueField' => 'premium']);  
+        $insurancePolicies = $this->InsurancePolicies->find('list', ['keyField' => 'id', 'valueField' => 'name','premium'])->where(['status'=>1]);   
+        
+        $insurancePremium = $this->InsurancePolicies->find('list', ['keyField' => 'id', 'valueField' => 'premium'])->all();  
+        
         $insuranceStatus = $this->InsurancePolicies->find('all')->where(['status'=>1])->all();  
+        $policyStatus = $this->CompanyAssets->find('all')->where(['contact_listing_id'=> $id])->all(); 
+        // dd($policyStatus);
         // $insurancePolicies = $this->paginate($this->InsurancePolicies);
         // $insuranceStatus = $this->InsurancePolicies->find('all')
         // ->select(['status'])
         // ->toArray();
         // $insuranceStatus = $this->InsurancePolicies->get($id);
         $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies','InsuranceCompanies'])->where(['contact_listing_id'=> $id])->all();        
+        
         // $companyAssets1 = $this->CompanyAssets->find()->where(['contact_listing_id'=> $id])->sumOf('premium');        
         // $companyname = $this->CompanyAssets->find('all')->contain('InsuranceCompanies')->where(['contact_listing_id'=> $id])->all();        
 //         foreach($companyAsset->insurance_policy as $a){
@@ -210,11 +219,43 @@ class ContactListingsController extends AppController
         // dd($companyAssets1);
 //    echo count($companyAsset);
 //     die;
-        // dd($companyAsset);
-        
-        $this->set(compact('contactListings','companyAsset','companyAssetss','result','insuranceCompanies','insurancePolicies','insurancePremium'));
-    }
+        // dd($companyAssetss);
 
+        
+        
+        $this->set(compact('policyStatus','contactListings','companyAsset','companyAssetss','result','insuranceCompanies','insurancePolicies','insurancePremium'));
+    }
+    public function deletepolicy($id = null) {
+        $this->loadModel('CompanyAssets');
+        // $companyAsset= $this->CompanyAssets->find('all')->contain(['ContactListings'])->where(['contact_listing_id'=> $id])->all();        
+        
+        // $companyAsset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=> $id])->all();        
+        if ($this->request->is('post')) {     
+                $this->autoRender = false;
+            //    $id = $this->request->getData('id');
+                  
+            //     $deleted = $this->request->getData('deleted');
+            
+                $companyasset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=>$id])->first();
+                if($companyasset->deleted == 1){
+
+                    $companyasset['deleted'] = 0;
+                    $companyasset['policy_status'] = 0;
+
+                }else{
+
+                    $companyasset['deleted'] = 1;
+                }
+
+                if($this->CompanyAssets->save($companyasset)){
+                    echo json_encode(array(
+                        "status" => 1,
+                        "message" => "The contactlisting saved. Please, try again.",
+                    ));
+                    exit;
+                }           
+            }
+    }
     /**
      * Add method
      *
@@ -372,4 +413,42 @@ class ContactListingsController extends AppController
     public function addpolicy(){
 
     }
+    public function getpremium(){
+        
+        // $a= $this->request->getdata();
+        // dd($a);
+         $policies = [];
+         
+        // $this->request->allowMethod('patch');
+        $id = $this->request->getData('id');
+            if($id){
+       
+
+
+                $policies =
+                $this->InsurancePolicies->find()
+                ->select(['premium','id'])
+                ->where(['id' => $id])->enableHydration(false)->toArray();
+            //  pr($policies);
+            //  die();
+
+            $data_to_save = [];
+            foreach ($policies as $key => $val) {
+               
+                $data_to_save[$key]['id']= $val['id'];
+               
+                $data_to_save[$key]['premium'] = $val['premium'];
+                
+            }
+
+            
+            
+        
+        
+    }
+        header('Content-Type: application/json');
+        echo json_encode($data_to_save);
+        exit();
+}
+  
 }

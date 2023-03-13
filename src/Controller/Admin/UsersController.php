@@ -42,10 +42,9 @@ class UsersController extends AppController
      public function index()
     {
         $user = $this->Authentication->getIdentity();
-
-
+       
         $users = $this->paginate($this->Users,[
-            'limit' => 4,
+            'limit' => 10,
             'order' => [
                 'id' => 'desc',
             ],
@@ -66,13 +65,17 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('admin');
+        $this->loadModel('InsurancePolicies');
+        $this->loadModel('CompanyAssets');
+                $this->viewBuilder()->setLayout('admin');
 
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
-
-        $this->set(compact('user'));
+        // dd($user);
+        $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->where(['insurance_policy_id'=> $id])->all();               
+        // dd($companyAssetss);
+        $this->set(compact('user','companyAssetss'));
     }
 
     /**

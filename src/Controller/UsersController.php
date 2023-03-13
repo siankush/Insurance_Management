@@ -96,6 +96,9 @@ class UsersController extends AppController
                 $this->Flash->error('Sorry Youre account has been deactivated by admin');
                 return $this->redirect(['controller'=>'Users','action'=>'logout']);
 
+            }if($user['deleted'] == 0){
+                $this->Flash->error('Sorry Youre account has been deleted by admin');
+                return $this->redirect(['controller'=>'Users','action'=>'logout']);
             }
             if ($user->auth == 0) {
                 // $redirect = $this->request->getQuery('redirect', [

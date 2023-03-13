@@ -8,13 +8,14 @@
 <style>
 a.addcomp {
     float: right;
-    /* margin-top: -92px; */
-    padding: 7px;
+    margin-top: -61px;
+    padding: 4px;
     width: 176px;
     border-radius: 20px;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     background: #ff5722;
     color: white;
+    text-align: center;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 25px;
@@ -48,21 +49,39 @@ a.addcomp {
   padding-top: 0px;
   margin-top: -167px;
 }
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+body.modal-open .background-container{
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+
+}
 </style>
-<div class='container-fluid'>
+<div class='container-fluid background-container'>
     <?php echo $this->Flash->render(); ?>
 </div>
 <div class="insurancesCompany index content" style="margin-top: 120px;" id='change-status'>
     
 <div class="container-fluid">
-
+   
     <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">COMPANIES LISTINGS</h1>
+    <?= $this->Form->create(null,['type'=>'GET']) ?>
+    <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search And Enter','id'=>'searchbox']) ?>
+    <!-- <?= $this->Form->submit() ?> -->
+    <?= $this->Form->end() ?>
     <a href="/insurance-companies/add" class="addcomp">Add Company</a>
-    <table class="table table-hover" >
+    <table class="table table-hover" id="datatablesSimple" >
 
             <thead>
             <tr id="#tablerow_user">
-                    <th>ID</th>
+                    <th>Sr.No</th>
                     <th>NAME</th>
                     <th>STATUS</th>
 
@@ -154,3 +173,45 @@ a.addcomp {
 
 
 
+<script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+
+</script>

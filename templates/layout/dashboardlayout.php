@@ -46,7 +46,7 @@ $cakeDescription = 'Insurance Management System';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <?= $this->Html->script('script') ?>
+    <!-- <?= $this->Html->script('script') ?> -->
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -64,7 +64,7 @@ $cakeDescription = 'Insurance Management System';
             <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
         </div>
     </nav> -->
-    <main class="main">
+    <main class="main ">
         <div class="container-fluid p-0">
             <?= $this->fetch('content') ?>
         </div>

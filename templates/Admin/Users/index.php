@@ -75,6 +75,12 @@ button#useradd {
   padding-top: 0px;
   margin-top: -167px;
 }
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
 </style>
 <body class="dashboard dashboard_1">
 <div class='container-fluid'>
@@ -155,17 +161,20 @@ button#useradd {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">USERS LISTINGS</h1>
-        <table class="table table-hover" >
+<?= $this->Form->create(null,['type'=>'GET']) ?>
+    <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search And Enter','id'=>'searchbox']) ?>
+    <!-- <?= $this->Form->submit() ?> -->
+    <?= $this->Form->end() ?>
+        <table class="table table-hover" id="datatablesSimple">
 
             <thead>
             <tr id="#tablerow_user">
-            <th><?= $this->Paginator->sort('id') ?></th>
+            <th>Sr.No</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
                     <th>EMAIL</th>
                     <th>PHONE.NO</th>
                     <th>ADDRESS</th>
-                    <th>TOTAL POLICY SALE </th>
                     <th>STATUS</th>
                     <th>CREATED AT</th>
                     <th class="actions">ACTIONS</th>
@@ -182,7 +191,6 @@ button#useradd {
                     <td><?= h($user->last_name) ?></td>
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->contact_number) ?></td>
-                    <td><?= h($user->address) ?></td>
                     <td><?= h($user->address) ?></td>
                     <td class="align-middle text-sm">
                           <!-- <?= h($contactlist->status); ?> -->
@@ -238,16 +246,22 @@ button#useradd {
        <?= $this->Form->create($user,['id'=>'formid']) ?>
        <input type="hidden" id="userlisting_id" name="id">
        
-           <fieldset>
-               <?php
-                   echo $this->Form->control('first_name',['class'=>'policy','id'=>'first_name']);
-                   echo $this->Form->control('last_name',['class'=>'policy','id'=>'last_name']);
-                   echo $this->Form->control('email',['class'=>'policy','id'=>'email']);
-                   echo $this->Form->control('contact_number',['class'=>'policy','id'=>'contact_number']);
-                   echo $this->Form->control('address',['class'=>'policy', 'id'=> 'address']);
-               ?>
+       <fieldset>
+               <legend><?= __('Edit User') ?></legend>
+               
+               <?php echo $this->Form->control('first_name',['class'=>'policy','id'=>'first_name']); ?>
+               <span id="uname"></span>
+               <?php echo $this->Form->control('last_name',['class'=>'policy','id'=>'last_name']); ?>
+               <span id="luname"></span>
+               <?php echo $this->Form->control('email',['class'=>'policy','id'=>'email']); ?>
+               <span id="uemail"></span>
+               <?php echo $this->Form->control('contact_number',['class'=>'policy','id'=>'contact_number']); ?>
+               <span id="uphone"></span>
+               <?php echo $this->Form->control('address',['class'=>'policy', 'id'=> 'address']); ?>
+               <span id="uaddress"></span>
+               
            </fieldset>
-           <?= $this->Form->button(__('Submit'),['class'=>'edit-user']) ?>
+           <?= $this->Form->button(__('Submit'),['class'=>'edit-user','id'=>'submit']) ?>
            <?= $this->Form->end() ?>
    </div>
 </div>
@@ -262,3 +276,46 @@ button#useradd {
   </div>
 </div> 
 <?= $this->Html->script('adminscript') ?>
+<?= $this->Html->script('admin_users_script') ?>
+<script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+
+</script>

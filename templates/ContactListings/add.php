@@ -1,5 +1,7 @@
   <?php echo $this->element("sidebar"); ?>
       <!-- partial -->
+      <?php echo $this->Flash->render(); ?>
+
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
@@ -77,5 +79,6 @@
   <!-- plugins:js -->
 
 
+  <?= $this->Html->script('script1') ?>
 
   

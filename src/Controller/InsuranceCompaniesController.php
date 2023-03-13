@@ -19,8 +19,15 @@ class InsuranceCompaniesController extends AppController
     public function index()
     {
         $this->viewBuilder()->setLayout('admin');
-
-        $insuranceCompanies = $this->paginate($this->InsuranceCompanies,[
+        $key = $this->request->getQuery('key');
+        if($key){
+            // $query = $this->Users->findByUsername($key);
+            $query = $this->InsuranceCompanies->find('all')
+            ->where(['Or'=>['name like'=>'%'.$key.'%']]);
+        }else{
+            $query = $this->InsuranceCompanies;
+        }
+        $insuranceCompanies = $this->paginate($query,[
             'limit' => 4,
             'order' => [
                 'id' => 'desc',
