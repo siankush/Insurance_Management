@@ -3123,3 +3123,78 @@ Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProjec
 Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
 [main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
 
+2023-03-13 12:28:02 notice: `Router::prefix()` is deprecated, use the non-static method `RouteBuilder::prefix()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line: 80
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `config/routes.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 880
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+
+2023-03-13 12:28:02 notice: `Router::scope()` is deprecated, use the non-static method `RouteBuilder::scope()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line: 892
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Routing/Router.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::scope() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 841
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 892
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+
+2023-03-13 12:37:42 notice: `Router::prefix()` is deprecated, use the non-static method `RouteBuilder::prefix()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line: 80
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `config/routes.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 880
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+
+2023-03-13 12:37:42 notice: `Router::scope()` is deprecated, use the non-static method `RouteBuilder::scope()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line: 892
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Routing/Router.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::scope() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 841
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 892
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+
+2023-03-14 04:04:56 notice: `Router::prefix()` is deprecated, use the non-static method `RouteBuilder::prefix()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line: 80
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `config/routes.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 880
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+
+2023-03-14 04:04:56 notice: `Router::scope()` is deprecated, use the non-static method `RouteBuilder::scope()` instead.
+/var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line: 892
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Routing/Router.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Core/functions.php, line 323
+Cake\Routing\Router::scope() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 841
+Cake\Routing\Router::prefix() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Routing/Router.php, line 892
+Cake\Http\BaseApplication::{closure}() /var/www/html/InsuranceManagementProject/Insurance_Management/config/routes.php, line 80
+Cake\Http\BaseApplication::routes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() /var/www/html/InsuranceManagementProject/Insurance_Management/vendor/cakephp/cakephp/src/Console/CommandRunner.php, line 147
+[main] /var/www/html/InsuranceManagementProject/Insurance_Management/bin/cake.php, line 12
+

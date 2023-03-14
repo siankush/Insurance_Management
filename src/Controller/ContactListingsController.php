@@ -74,15 +74,14 @@ class ContactListingsController extends AppController
         // $contactListings = $this->paginate($this->ContactListings);
         
                     // $contactListings = $this->paginate($this->ContactListings->find('all')->contain('CompanyAssets')->where(['ContactListings.user_id'=> $id])->all());  
-                    $contactListings = $this->paginate($this->ContactListings->find('all')
-    ->contain('CompanyAssets')
-    ->where(['ContactListings.user_id' => $id]),
-    ['limit' => 10]
-);
-
-                
-                   
-                   
+        $contactListings = $this->paginate($this->ContactListings->find('all')
+        ->contain('CompanyAssets')
+        ->where(['ContactListings.user_id' => $id]),
+        ['limit' => 10]
+    );
+    // dd($contactListings);
+    // echo count($contactListings);
+                                                      
                     // $contacts = $this->ContactListings->find('all')->where(['user_id'=> $this])
 
         // $this->paginate = [

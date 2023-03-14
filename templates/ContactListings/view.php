@@ -199,6 +199,7 @@ foreach ($companyAssetss as $company) {
         <th>Insurance Policy</th>
         <th>Premium</th>
         <th>Term Length</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -213,6 +214,7 @@ foreach ($companyAssetss as $company) {
         <td><?php   echo $company->insurance_policy->name;  ?></td>
         <td><?php   echo $company->insurance_policy->premium; ?></td>
         <td><?php   echo $company->term_length; ?></td>
+        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete?', $user->id)]) ?>
       </tr>
      
     </tbody>
