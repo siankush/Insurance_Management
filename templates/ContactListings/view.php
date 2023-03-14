@@ -55,6 +55,63 @@ select#policyname,select#premiumnumber {
     border: 1px solid #CED4DA;
     color: #495057;
 }
+#download {
+    float: right;
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+    animation: button-loading-spinner 1s ease infinite;
+}
+#download--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+/* Paginator */
+.paginator {
+    text-align: right;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+.pagination li {
+    margin: 0 0.5rem;
+}
+.prev.disabled a,
+.next.disabled a {
+    cursor: not-allowed;
+    color: #606c76;
+}
+.asc:after {
+    content: " \2193";
+}
+.desc:after {
+    content: " \2191";
+}
+.card {
+    margin-top: 80px;
+}
+h1#check {
+    text-align: center;
+    margin-right: 180px;
+}
 </style>
 <div class="row">
     <!-- <aside class="column"> -->
@@ -109,14 +166,20 @@ select#policyname,select#premiumnumber {
 
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 
     <?php echo $this->element("sidebar"); ?>
-      
-      <div class="main-panel">
+
+      <div class="main-panel" id="change-status">
+      <?php echo $this->Flash->render(); ?>
+
         <div class="content-wrapper">
+        <button class="btn"  id="download"><i class="fa fa-download"></i> Download</button>
+
+
           <div class="row background-container" style="justify-content: center;">
+          
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -140,6 +203,8 @@ foreach ($companyAssetss as $company) {
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add Policy
                   </button>
+                  <!-- <button onclick="window.print();">Convert HTML to PDF</button> -->
+
                   </h3>
                   <!-- <p class="card-description">
                     Add class <code>.table</code>
@@ -192,9 +257,12 @@ foreach ($companyAssetss as $company) {
         </div>
 <!--   -->
 
-<div class="content-wrapper ">
+<div class="content-wrapper " id="contentToPrint">
 <div class="container background-container">  
+<?php  
+if($totalPrice>0){
 
+?>
 <table class="table table-hover">
   <h2 style="text-align: center; margin-bottom:20px;">Insurance List  </h2>
     <thead>
@@ -210,12 +278,12 @@ foreach ($companyAssetss as $company) {
       </tr>
     </thead>
     <tbody>
-    <?php $n=1; ?>
+    <?php $n = $this->Paginator->counter('{{start}}') ?>
 
     <?php foreach($companyAssetss as $company){ ?>
       <?php if($company->deleted == 1) : ?>
 
-      <tr id="data<?php echo $company->contact_listing_id;?>">
+      <tr id="data<?php echo $company->id;?>">
         <td><?php echo $n ?></td>
         <td><?php   echo $this->Html->image($company->insurance_policy->image);  ?></td>
         <td><?php   echo $company->insurance_company->name; ?></td>
@@ -223,7 +291,7 @@ foreach ($companyAssetss as $company) {
         <td><?php   echo $company->insurance_policy->premium; ?></td>
         <td><?php   echo $company->term_length; ?></td>
         <td>
-          <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted?>" deletepolicy-id ="<?= $contactListings->id?>"></i>                          
+          <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted?>" deletepolicy-id ="<?= $company->id?>"></i>                          
          </td>
       </tr>
      
@@ -234,7 +302,24 @@ foreach ($companyAssetss as $company) {
   <?php } ?>
 
   </table>
+  
+  <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
+    <?php  
+}else{
+  echo "<h1 id='check'>No Records Found</h1>";
+}
+?>
+    </div>
+    
     </div>
 
 
@@ -273,7 +358,8 @@ foreach ($companyAssetss as $company) {
                 <?php echo $this->Form->control("premium",['id'=>'', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','id'=>'premiumnumber','required'=>false]); ?>
                 </div>
                 <label>Term Length</label><br>
-                  <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month']) ?>
+                  <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month'],['required'=>true]) ?>
+                  <!-- <span class="errorTxt text-danger"></span> -->
                 <?php                
                 // echo $this->Form->control('term_length',['class'=>'clt','label'=>false]);
                     echo $this->Form->control('status',['class'=>'clt','label'=>false]);
@@ -343,7 +429,31 @@ foreach ($companyAssetss as $company) {
             });
 
   </script> -->
+  <script>
+window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("contentToPrint");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+              margin: [1, -2.5, 0, 0], 
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
 
+const theButton = document.querySelector("#download");
+
+theButton.addEventListener("click", () => {
+    theButton.classList.add("button--loading");
+});
+  </script>
+  <?= $this->Html->script(['pdf']); ?>
 <script>
   $(document).on("click", ".delete-policy", function(){
     var csrfToken = $('meta[name="csrfToken"]').attr('content');
@@ -381,6 +491,8 @@ foreach ($companyAssetss as $company) {
                     var dataArr = JSON.parse(response);
                     if(dataArr.status ==1 ){
                       $("#data"+formData).hide();
+                      location.reload('/contact-listings/view/ #change-status');
+
           
                     }
                   }
@@ -394,3 +506,22 @@ foreach ($companyAssetss as $company) {
         )
   });  
 </script>  
+
+
+<!-- <script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#formid" ).validate({
+  rules: {
+    term_length: {
+      required: true      
+    }
+  },
+  messages: {},
+    // errorElement : 'div',
+    errorLabelContainer: '.errorTxt'
+});
+</script> -->

@@ -208,8 +208,18 @@ class ContactListingsController extends AppController
         // ->select(['status'])
         // ->toArray();
         // $insuranceStatus = $this->InsurancePolicies->get($id);
-        $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies','InsuranceCompanies'])->where(['contact_listing_id'=> $id])->all();        
+        // $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies','InsuranceCompanies'])->where(['contact_listing_id'=> $id,'policy_status'=>1])->all();        
         
+
+        $companyAssetss = $this->paginate($this->CompanyAssets->find('all')
+        ->contain(['InsurancePolicies','InsuranceCompanies'])
+        ->where(['contact_listing_id'=> $id,'policy_status'=>1]),
+        ['limit' => 5,
+         'order' =>[
+            'id'=>'desc',
+         ]
+        ]
+    );
         // $companyAssets1 = $this->CompanyAssets->find()->where(['contact_listing_id'=> $id])->sumOf('premium');        
         // $companyname = $this->CompanyAssets->find('all')->contain('InsuranceCompanies')->where(['contact_listing_id'=> $id])->all();        
 //         foreach($companyAsset->insurance_policy as $a){
@@ -236,7 +246,7 @@ class ContactListingsController extends AppController
                   
             //     $deleted = $this->request->getData('deleted');
             
-                $companyasset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=>$id])->first();
+                $companyasset = $this->CompanyAssets->find('all')->where(['id'=>$id])->first();
                 if($companyasset->deleted == 1){
 
                     $companyasset['deleted'] = 0;

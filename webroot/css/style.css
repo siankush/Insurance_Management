@@ -75,6 +75,10 @@ body.modal-open .background-container{
     filter: blur(4px);
 
 }
+button.navbar-toggler.navbar-toggler.align-self-center {
+    display: none;
+}
+
 a.badge.badge-sm.bg-gradient-success {
     background: #00c583;
     font-size: 14px;

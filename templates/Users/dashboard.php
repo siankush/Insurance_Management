@@ -53,23 +53,35 @@ echo $date; ?></h4>
                 </div>
               </div>
             </div>
+            <?php $totalPrice = 0;
+foreach ($companyAssetss as $company) {
+
+    $totalPrice += $company->insurance_policy->premium;
+
+    // echo $company->insurance_policy->premium;
+} 
+// $totalPrice = $companyAssetss->sumOf('premium');
+?>
+
+                 
+                
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">Today’s Bookings</p>
-                      <p class="fs-30 mb-2">4006</p>
-                      <p>10.00% (30 days)</p>
+                      <p class="mb-4">Total Policies</p>
+                      <p class="fs-30 mb-2"><?php echo count($companyAssetss); ?></p>
+                     
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
-                      <p class="fs-30 mb-2">61344</p>
-                      <p>22.00% (30 days)</p>
+                      <p class="mb-4">Total Premium Price</p>
+                      <p class="fs-30 mb-2"><?php echo $totalPrice;; ?></p>
+                      
                     </div>
                   </div>
                 </div>
@@ -79,7 +91,7 @@ echo $date; ?></h4>
                   <div class="card card-light-blue">
                     <div class="card-body">
                       <p class="mb-4">Number of Meetings</p>
-                      <p class="fs-30 mb-2">34040</p>
+                      <p class="fs-30 mb-2"><?php echo count($contact); ?></p>
                       <p>2.00% (30 days)</p>
                     </div>
                   </div>

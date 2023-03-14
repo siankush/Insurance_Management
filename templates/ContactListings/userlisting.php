@@ -73,6 +73,7 @@ i.fa-solid.fa-xmark {
                   <?php echo $this->Flash->render(); ?>
 
                   <div class="table-responsive">
+                
                     <table class="table table-striped">
                       <thead>
                         <tr>
@@ -260,6 +261,10 @@ i.fa-solid.fa-xmark {
     </div>
   </div>
 </div> 
+
+<script>
+
+</script>
 <?= $this->Html->script('userscript') ?>
 <?= $this->Html->script('script1') ?>
 

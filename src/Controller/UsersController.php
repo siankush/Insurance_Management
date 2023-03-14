@@ -184,17 +184,24 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function dashboard(){   
+    public function dashboard($id = null){   
+
+        $this->loadModel('ContactListings');
         $this->loadModel('CompanyAssets');
     $this->viewBuilder()->setLayout('dashboardlayout');   
     $user = $this->Authentication->getIdentity();
+    $id = $user['id'];
+    $contact = $this->paginate($this->ContactListings->find('all')->contain(['CompanyAssets'])->where(['ContactListings.user_id'=>$id]));
+    $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->where(['insurance_policy_id'=> $user->id])->all();               
+    // $contact = $this->CompanyAssets->find('all')->where(['contact_listing_id'=>$user->id])->all();               
+
     // dd($id);
 //     $companyAsset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=> $id]);  
 //    echo count($companyAsset);
 //     die;
     // echo ($user->first_name);
     
-    $this->set(compact('user'));
+    $this->set(compact('user','companyAssetss','contact'));
     // $this->set(compact('users','user'));    
 
 

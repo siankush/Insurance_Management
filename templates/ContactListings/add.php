@@ -1,10 +1,10 @@
   <?php echo $this->element("sidebar"); ?>
       <!-- partial -->
-      <?php echo $this->Flash->render(); ?>
 
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
+          <?php echo $this->Flash->render(); ?>
 
          <div class="col-12">
       <div class="content-wrapper d-flex align-items-center auth px-0">
