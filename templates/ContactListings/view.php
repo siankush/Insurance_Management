@@ -322,7 +322,10 @@ if($totalPrice>0){
     
     </div>
 
-
+    <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -359,7 +362,7 @@ if($totalPrice>0){
                 </div>
                 <label>Term Length</label><br>
                   <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month'],['required'=>true]) ?>
-                  <!-- <span class="errorTxt text-danger"></span> -->
+                  <span class="errorTxt text-danger"></span>
                 <?php                
                 // echo $this->Form->control('term_length',['class'=>'clt','label'=>false]);
                     echo $this->Form->control('status',['class'=>'clt','label'=>false]);
@@ -382,7 +385,7 @@ if($totalPrice>0){
   </div>
 </div>
 
-<!-- <script>
+<script>
         $(document).ready(function() {
             var csrfToken = $('meta[name="csrfToken"]').attr('content');
             $.ajaxSetup({
@@ -428,7 +431,7 @@ if($totalPrice>0){
             });
             });
 
-  </script> -->
+  </script>
   <script>
 window.onload = function () {
     document.getElementById("download")
@@ -508,20 +511,19 @@ theButton.addEventListener("click", () => {
 </script>  
 
 
-<!-- <script>
+<script>
 // just for the demos, avoids form submit
-jQuery.validator.setDefaults({
-  debug: true,
-  success: "valid"
-});
-$( "#formid" ).validate({
-  rules: {
-    term_length: {
-      required: true      
-    }
-  },
-  messages: {},
-    // errorElement : 'div',
+jQuery(function($) {
+  var validator = $('#formid').validate({
+    rules: {
+      term_length: {
+        required: true
+      }
+      
+    },
+    messages: {},
+    errorElement : 'div',
     errorLabelContainer: '.errorTxt'
+  });
 });
-</script> -->
+</script>

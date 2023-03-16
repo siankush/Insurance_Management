@@ -61,6 +61,10 @@
             </div>
           </div>
         </div>
+        <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">

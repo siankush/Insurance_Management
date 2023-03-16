@@ -59,6 +59,13 @@ i.fa-solid.fa-xmark {
     border-color: #51d88a;
     margin-top: -115px !important;
 }
+
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
 </style>
 <?php echo $this->element("sidebar"); ?>     
       <div class="main-panel background-container" id="change-status">
@@ -68,13 +75,17 @@ i.fa-solid.fa-xmark {
                   <div class="card">
                       <div class="card-body">
                     <!-- <?= $this->Html->link(__('Add'), ['controller'=>'ContactListings','action' => 'add'], ['class' => 'btn btn-primary float-right','type'=>'button']) ?> -->
+                    <?= $this->Form->create(null,['type'=>'GET']) ?>
+    <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search','id'=>'searchbox']) ?>
+    <!-- <?= $this->Form->submit() ?> -->
+    <?= $this->Form->end() ?>
                     <a href="/contact-listings/add" class="btn btn-primary float-right">Add</a>                    
                   <h4 class="card-title">Contact Listings</h4>
                   <?php echo $this->Flash->render(); ?>
 
                   <div class="table-responsive">
                 
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="datatablesSimple">
                       <thead>
                         <tr>
                           <th>
@@ -156,8 +167,8 @@ i.fa-solid.fa-xmark {
                           <i class="fa-solid fa-trash delete-user" style="color: red; font-size: 18px;" status-id ="<?= $contactlist->deletestatus?>" deleteuser-id ="<?= $contactlist->id?>"></i>                          
                           </td>
                         </tr>
-                        <?php endif; ?>
                         <?php $n++; ?>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                       </tbody>
                     </table>
@@ -178,12 +189,16 @@ i.fa-solid.fa-xmark {
             </div>
           </div>
         </div>
+        <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023 All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made By SkyDash <i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
         <!-- partial -->
@@ -263,6 +278,45 @@ i.fa-solid.fa-xmark {
 </div> 
 
 <script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase().trim();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
 
 </script>
 <?= $this->Html->script('userscript') ?>

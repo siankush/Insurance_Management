@@ -1,7 +1,160 @@
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #ddd; height:100%;overflow-x: hidden;}	
+.text{color:white;font-size:220px;text-align:center;}
+.open{color:white;background:#000;padding:10px;border-radius:20px;}
 
+/* Preloader */
+.container-preloader {
+	align-items:center; cursor:none; display:flex; height:100%;
+  justify-content:center; position:fixed; left:0; top:0; width:100%; z-index:900;
+}
+.container-preloader .animation-preloader {
+	position:absolute; z-index: 100;}
+/* Spinner Loading */
+.container-preloader .animation-preloader .spinner {
+  animation: spinner 1s infinite linear;
+	border-radius: 50%;  border: 10px solid rgba(0, 0, 0, 0.2);
+  border-top-color: white; /* It is not in alphabetical order so that you do not overwrite it */
+  height: 9em;  margin: 0 auto 3.5em auto; width: 9em;
+}
+/* Loading text */
+.container-preloader .animation-preloader .txt-loading {
+  font: bold 5em 'Montserrat', sans-serif;
+	text-align: center;	user-select: none;
+}
+.container-preloader .animation-preloader .txt-loading .characters:before {
+  animation: characters 4s infinite;  color: orange;
+  content: attr(preloader-text);  left: 0;
+  opacity: 0;  position: absolute;  top: 0;
+  transform: rotateY(-90deg);
+}
+.container-preloader .animation-preloader .txt-loading .characters {
+	color: white;	position: relative;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(2):before {
+  animation-delay: 0.2s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(3):before {
+  animation-delay: 0.4s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(4):before {
+  animation-delay: 0.6s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(5):before {
+  animation-delay: 0.8s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(6):before {
+  animation-delay: 1s;
+}
+.container-preloader .animation-preloader .txt-loading .characters:nth-child(7):before {
+  animation-delay: 1.2s;
+}
+.container-preloader .loader-section {
+  background-color: #000038;  height: 100%;
+  position: fixed;  top: 0;  width: calc(50% + 1px);
+}
+.container-preloader .loader-section.section-left {
+  left: 0;
+}
+.container-preloader .loader-section.section-right {
+  right: 0;
+}
+/* Fade effect on loading animation */
+.loaded .animation-preloader {
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+/* Curtain effect */
+.loaded .loader-section.section-left {
+  transform: translateX(-101%);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
+}
+.loaded .loader-section.section-right {
+  transform: translateX(101%);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1.000);
+}
+/* Animation of the preloader */
+@keyframes spinner {
+to {
+	transform: rotateZ(360deg);
+}}
+/* Animation of letters loading from the preloader */
+@keyframes characters {
+  0%,
+  75%,
+  100% {
+ opacity: 0;
+ transform: rotateY(-90deg);
+  }
+  25%,
+  50% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }}
+/* Laptop size back (laptop, tablet, cell phone) */
+@media screen and (max-width: 767px) {
+	/* Preloader */
+	/* Spinner Loading */	
+	.container-preloader .animation-preloader .spinner {
+	height: 8em;
+	width: 8em;
+	}
+	/* Text Loading */
+	.container-preloader .animation-preloader .txt-loading {
+	  font: bold 3.5em 'Montserrat', sans-serif;
+	}}
+@media screen and (max-width: 500px) {
+	/* Prelaoder */
+	/* Spinner Loading */
+	.container-preloader .animation-preloader .spinner {
+	height: 7em;
+	width: 7em;
+	}
+	/*Loading text */
+	.container-preloader .animation-preloader .txt-loading {
+	  font: bold 2em 'Montserrat', sans-serif;
+	}}
+.origin{text-decoration:none;
+font-size:45px;}
+</style>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<!-- Preloader -->
+		<div id="preloader">
+			<div id="container" class="container-preloader">
+				<div class="animation-preloader">
+					<div class="spinner"></div>
+					<div class="txt-loading">
+						<span preloader-text="S" class="characters">S</span>
+						
+						<span preloader-text="K" class="characters">K</span>
+						
+						<span preloader-text="Y" class="characters">Y</span>
+						
+						<span preloader-text="D" class="characters">D</span>
+						
+						<span preloader-text="A" class="characters">A</span>
+						
+						<span preloader-text="S" class="characters">S</span>
+						
+						<span preloader-text="H" class="characters">H</span>
+					</div>
+				</div>	
+				<div class="loader-section section-left"></div>
+				<div class="loader-section section-right"></div>
+			</div>
+		</div>	
   <div class="container-scroller">
+  <body onload="timeCount();">
+
  <?php echo $this->element('sidebar') ?>
       <!-- partial -->
+     
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
@@ -35,20 +188,53 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="<?= $baseurl ?>img/images/dashboard/people.svg" alt="people">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+<!-- Indicators -->
+<ul class="carousel-indicators">
+  <li data-target="#demo" data-slide-to="0" class="active"></li>
+  <li data-target="#demo" data-slide-to="1"></li>
+  <li data-target="#demo" data-slide-to="2"></li>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner" >
+  <div class="carousel-item active" data-interval="3000">
+  <img src="<?= $baseurl ?>img/banner5.png" alt="people">
+  </div>
+  <div class="carousel-item" data-interval="3000">
+  <img src="<?= $baseurl ?>img/banner6.png" alt="people">
+  </div>
+  <div class="carousel-item" data-interval="3000">
+  <img src="<?= $baseurl ?>img/banner7.png" alt="people">
+  </div>
+</div>
+
+<!-- Left and right controls -->
+<a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</a>
+
+</div>
+                  <!-- <img src="<?= $baseurl ?>img/New Project.png" alt="people"> -->
                   
                   <div class="weather-info">
                     <div class="d-flex">
                       <div>
-                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2><br>
-                      </div>
+                        <h2 class="mb-0 font-weight-normal text-white"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2><br>
+                      </div><br>
+                      <br>
                       <div class="ml-2">
-                        <h4 class="location font-weight-normal"><?php $time_now=mktime(date('h')+5,date('i')+30,date('s'));
-$date = date('d-m-Y H:i', $time_now);
-echo $date; ?></h4>
-                        <h6 class="font-weight-normal">India</h6>
+                       
                       </div>
+                      
                     </div>
+                    <h4 class="location font-weight-normal text-white"><div id="clock"></div></h4> 
+  
+  <h6 class="font-weight-normal text-white">India</h6>
                   </div>
                 </div>
               </div>
@@ -68,7 +254,7 @@ foreach ($companyAssetss as $company) {
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
+                  <div class="card card-tale bg1">
                     <div class="card-body">
                       <p class="mb-4">Total Policies</p>
                       <p class="fs-30 mb-2"><?php echo count($companyAssetss); ?></p>
@@ -90,18 +276,16 @@ foreach ($companyAssetss as $company) {
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
+                      <p class="mb-4">Number of Clients</p>
                       <p class="fs-30 mb-2"><?php echo count($contact); ?></p>
-                      <p>2.00% (30 days)</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">47033</p>
-                      <p>0.22% (30 days)</p>
+                      <p class="mb-4">Number of Meetings</p>
+                      <p class="fs-30 mb-2">7</p>
                     </div>
                   </div>
                 </div>
@@ -148,7 +332,10 @@ foreach ($companyAssetss as $company) {
               </div>
             </div>
           </div>
-          
+          <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -163,5 +350,45 @@ foreach ($companyAssetss as $company) {
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-  
+  <script>
+$(document).ready(function() {
+  setTimeout(function() {
+    $('#container').addClass('loaded');
+    // Once the container has finished, the scroll appears
+    if ($('#container').hasClass('loaded')) {
+      // It is so that once the container is gone, the entire preloader section is deleted
+      $('#preloader').delay(900).queue(function() {
+        $(this).remove();
+      });}
+  }, 900);});
 
+  </script>
+<script>
+
+function timeCount() {
+			var today = new Date();
+
+			var day = today.getDate();
+			var month = today.getMonth()+1;
+			var year = today.getFullYear();
+
+			var hour = today.getHours();
+			if(hour<10)hour = "0"+hour;
+
+			var minute = today.getMinutes();
+			if(minute<10)minute = "0"+minute;
+
+			var second = today.getSeconds();
+			if(second<10)second = "0"+second;
+
+			document.getElementById("clock").innerHTML = 
+			day+"/"+month+"/"+year+"  "+hour+":"+minute+":"+second;
+
+			setTimeout("timeCount()", 1000);
+		}
+</script>
+
+
+
+
+  

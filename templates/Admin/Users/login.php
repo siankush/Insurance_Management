@@ -1,32 +1,3 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
- */
-?>
-<!-- <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="users form content">
-            <?= $this->Form->create() ?>
-            <fieldset>
-                <legend><?= __('Add User') ?></legend>
-                <?php
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
-    </div>
-</div> -->
-
 
 <style>
 .logindesign{
@@ -83,7 +54,8 @@
                <div class="login_section">
                   <div class="logo_login">
                      <div class="center">
-                        <?php echo $this->Html->image('logo/logo.png',['width'=>'210']) ?>
+                        <?php echo $this->Html->image('logo-svg.png',['width'=>'210']) ?>
+                        <!-- <img src="<?= $baseurl ?>img/logo-svg.png" class="mr-2" alt="logo"/> -->
                      </div>
                   </div>
                   

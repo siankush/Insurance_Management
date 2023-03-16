@@ -74,11 +74,14 @@ class ContactListingsTable extends Table
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table',
+            'message'=>'Email already exists',
+        ]);
 
+            
         $validator
             ->scalar('phone')
-            ->maxLength('phone', 11)
+            ->maxLength('phone', 10)
             ->requirePresence('phone', 'create')
             ->notEmptyString('phone')
             ->add('phone', [

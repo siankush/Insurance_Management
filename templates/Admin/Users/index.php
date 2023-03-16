@@ -132,9 +132,7 @@ input#searchbox {
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <a href="index.html"><?php echo $this->Html->image('logo/logo.png') ?></a>
-                        </div>
+                        
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>
@@ -176,7 +174,7 @@ input#searchbox {
                     <th>PHONE.NO</th>
                     <th>ADDRESS</th>
                     <th>STATUS</th>
-                    <th>CREATED AT</th>
+                    <!-- <th>CREATED AT</th> -->
                     <th class="actions">ACTIONS</th>
             </tr>
             </thead>
@@ -201,7 +199,8 @@ input#searchbox {
                                 
                                 <?= $this->Form->postLink(__('Inactive'), ['action' => 'userstatus', $user->id, $user->status], ['class'=>'badge badge-sm bg-gradient-secondary','confirm' => __('Are you sure you want to Active ?', $user->id)]) ?>
                                 <?php endif; ?> 
-                         </td>                         <td><?= h($user->created_at) ?></td>
+                         </td>                         
+                         <!-- <td><?= h($user->created_at) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__(''), ['action' => 'view', $user->id],['class'=>'fa-solid fa-eye']) ?>
                         <i class="fa-solid fa-pen-to-square get-userinfo " data-bs-toggle="modal" data-bs-target="#myModal" style="color: orange; font-size: 18px;" edituser-id ="<?= $user->id ?>"></i>
@@ -223,7 +222,7 @@ input#searchbox {
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{end}} total')) ?></p>
     </div>
                 </div>
                    
