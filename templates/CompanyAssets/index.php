@@ -118,7 +118,7 @@ a.addcomp {
 <div class="insurancesCompany index content" style="margin-top: 120px;" id='change-status'>
     
 <div class="container-fluid">
-
+<h3>Total Policies : <span class="badge"><?php echo count($companyAssets); ?></span></h3>
     <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">COMPANIES LISTINGS</h1>
     <a href="/insurance-companies/add" class="addcomp">Add Company</a>
     <table class="table table-hover" >
@@ -150,14 +150,13 @@ a.addcomp {
                     <td><?= $this->Html->image($companyAsset->insurance_policy->image,['width'=>'100px']) ?></td>
                     <td><?= h($companyAsset->term_length) ?></td>
                     <td>
-                    <?php  if($companyAsset->checkstatus == 1) : ?>
-                        <?php  echo 'Approved'; ?>
-                        <?php elseif($companyAsset->checkstatus == 0) : ?>
-                        <?php  echo 'Rejected'; ?>
-                        <?php else : ?>
-                        <?php  echo 'Pending'; ?>
-                                            
-                        <?php endif; ?> 
+                   <?php  if($companyAsset->checkstatus == 0) : ?>
+                            
+                            <?= $this->Form->postLink(__('Pending'),['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-success'],['confirm' => __('Are you sure you want to approve ?', $companyAsset->id)]) ?>
+                            <?php else : ?>
+                                
+                                <?= $this->Form->postLink(__('Approve'), ['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-secondary'],['confirm' => __('Are you sure you want to pending ?', $companyAsset->id)]) ?>
+                                <?php endif; ?> 
                     </td>
 
                 </tr>

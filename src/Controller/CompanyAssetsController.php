@@ -24,13 +24,43 @@ class CompanyAssetsController extends AppController
         $this->paginate = [
             'contain' => ['Users', 'InsuranceCompanies', 'InsurancePolicies','ContactListings'],
         ];
-        $companyAssets = $this->paginate($this->CompanyAssets);
+        // $companyAssets = $this->paginate->CompanyAssets->find('all')->all();
+        $companyAssets = $this->paginate($this->CompanyAssets->find('all')
+        ->contain(['Users', 'InsuranceCompanies', 'InsurancePolicies','ContactListings'])
+        ->where(['checkstatus' => 0]),
+        ['limit' => 10,
+        'order' => [
+            'id' => 'desc',
+        ],    
+        ]
+        
+    );
+    // dd($companyAssets);
+        // $companyAssets = $this->paginate($this->CompanyAssets)->all();
 
         // $insuranceCompanies = $this->InsuranceCompanies->find('list', ['keyField' => 'id', 'valueField' => 'name']); 
         // dd($companyAsset->contact_listing->name);  
         // $contactlistname = $this->ContactListings->find('list', ['keyField' => 'id', 'valueField' => 'name']);  
         // dd( $companyAssets);
         $this->set(compact('companyAssets'));
+    }
+
+    public function policystatus($id = null, $checkstatus){
+           
+        $this->request->allowMethod(['post']);
+        $companyasset = $this->CompanyAssets->get($id);
+    
+        if($checkstatus == 0){
+        $companyasset->checkstatus = 1;
+        }else{
+        $companyasset->checkstatus = 0;
+        $this->Flash->success(__('The status has been changed.'));
+        }
+        if($this->CompanyAssets->save($companyasset)){
+            $this->Flash->success(__('The status has been changed.'));
+    
+        }
+        return $this->redirect(['controller'=>'CompanyAssets', 'action' => 'index']);
     }
 
     /**

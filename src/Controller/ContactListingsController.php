@@ -172,34 +172,34 @@ class ContactListingsController extends AppController
                 $companyAsset = $this->CompanyAssets->patchEntity($companyAsset, $data);
                 $this->CompanyAssets->save($companyAsset);
                 
-                $companyAsset = $this->CompanyAssets->newEmptyEntity();
-                // dd($data['user_id1']);
+                // $companyAsset = $this->CompanyAssets->newEmptyEntity();
+                // // dd($data['user_id1']);
 
-                $companyAsset->user_id = $data['user_id1'];
+                // $companyAsset->user_id = $data['user_id1'];
             
-                $companyAsset->contact_listing_id = $data['contact_listing_id1'];
-                $companyAsset->insurance_company_id = $data['insurance_company_id1'];
-                $companyAsset->insurance_policy_id = $data['insurance_policy_id1'];
-                $companyAsset->premium = $data['premium1'];
-                $companyAsset->term_length = $data['term_length1'];
-                $companyAsset->status = $data['status1'];
-                $companyAsset->deleted = $data['deleted1'];
-                $companyAsset->policy_status = $data['policy_status1'];
+                // $companyAsset->contact_listing_id = $data['contact_listing_id1'];
+                // $companyAsset->insurance_company_id = $data['insurance_company_id1'];
+                // $companyAsset->insurance_policy_id = $data['insurance_policy_id1'];
+                // $companyAsset->premium = $data['premium1'];
+                // $companyAsset->term_length = $data['term_length1'];
+                // $companyAsset->status = $data['status1'];
+                // $companyAsset->deleted = $data['deleted1'];
+                // $companyAsset->policy_status = $data['policy_status1'];
                   
-                $this->CompanyAssets->save($companyAsset);
+                // $this->CompanyAssets->save($companyAsset);
                 
-                $companyAsset = $this->CompanyAssets->newEmptyEntity();
-                // dd($data['user_id1']);
+                // $companyAsset = $this->CompanyAssets->newEmptyEntity();
+                // // dd($data['user_id1']);
 
-                $companyAsset->user_id = $data['user_id2'];
-                $companyAsset->contact_listing_id = $data['contact_listing_id2'];
-                $companyAsset->insurance_company_id = $data['insurance_company_id2'];
-                $companyAsset->insurance_policy_id = $data['insurance_policy_id2'];
-                $companyAsset->premium = $data['premium2'];
-                $companyAsset->term_length = $data['term_length2'];
-                $companyAsset->status = $data['status2'];
-                $companyAsset->deleted = $data['deleted2'];
-                $companyAsset->policy_status = $data['policy_status2'];
+                // $companyAsset->user_id = $data['user_id2'];
+                // $companyAsset->contact_listing_id = $data['contact_listing_id2'];
+                // $companyAsset->insurance_company_id = $data['insurance_company_id2'];
+                // $companyAsset->insurance_policy_id = $data['insurance_policy_id2'];
+                // $companyAsset->premium = $data['premium2'];
+                // $companyAsset->term_length = $data['term_length2'];
+                // $companyAsset->status = $data['status2'];
+                // $companyAsset->deleted = $data['deleted2'];
+                // $companyAsset->policy_status = $data['policy_status2'];
 
             if ($this->CompanyAssets->save($companyAsset)) {
                  

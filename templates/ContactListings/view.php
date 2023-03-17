@@ -226,8 +226,6 @@ th {
  
           <?php  if($company->checkstatus == 1) : ?>
             <?php  echo 'Approved'; ?>
-            <?php elseif($company->checkstatus == 0) : ?>
-            <?php  echo 'Rejected'; ?>
             <?php else : ?>
             <?php  echo 'Pending'; ?>
                                 
@@ -279,7 +277,7 @@ th {
           <?php echo $this->Form->control('policy_status',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
           
           
-          <div class="form-group">                  
+          <!-- <div class="form-group">                  
             <input type="hidden" name="user_id1" value="<?php echo $result->id ?>">
     <input type="hidden" name="contact_listing_id1" value="<?php echo $contactListings->id ?>">
     </div>
@@ -341,7 +339,7 @@ th {
               echo $this->Form->control('deleted2',['value'=>'1','class'=>'clt','label'=>false]);
               ?>
           
-          <?php echo $this->Form->control('policy_status2',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
+          <?php echo $this->Form->control('policy_status2',['value'=>'1', 'class'=>'clt','label'=>false]); ?> -->
           
           
           

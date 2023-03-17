@@ -31,9 +31,21 @@ class UsersController extends AppController
                 // $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->all();    
                 // dd($companyAssetss);    
 
-                $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->all();        
+                $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->all();      
+                
+                
+                $companyAssets = $this->paginate($this->CompanyAssets->find('all')
+        ->contain(['Users', 'InsuranceCompanies', 'InsurancePolicies','ContactListings'])
+        ->where(['checkstatus' => 0]),
+        ['limit' => 10,
+        'order' => [
+            'id' => 'desc',
+        ],    
+        ]
+        
+    );
 
-                $this->set(compact('user' ,'insuranceCompanies','insurancePolicies','companyAssetss'));
+                $this->set(compact('user' ,'insuranceCompanies','insurancePolicies','companyAssetss','companyAssets'));
 
 
 

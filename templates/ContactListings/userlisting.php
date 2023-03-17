@@ -7,6 +7,7 @@ h4.card-title {
     font-size: 20px !important;
     text-transform: uppercase !important;
     font-weight: 800 !important;
+    width: 50%;
 }
 th {
     font-size: 17px !important;
@@ -111,12 +112,16 @@ td , td.py-1{
                          </td>
                         <td>
                           <?php $asserarray = array(); foreach($contactlist->company_assets as $assets):
-                                  $asserarray[] =+ $assets->policy_status;
-                                endforeach;
-                            ?>
-                         <?php  if(in_array(1,$asserarray)) {?>
+                                  $asserarray[] =+ $assets->checkstatus;
+                                  endforeach;
+                                  ?>
+            
+
+                        <?php ?>          
+                         <?php  if(in_array(1,$asserarray) ) {?>
                                   <?php echo "Client"; ?>                            
-                            <?php }else { ?>
+                            <?php }
+                            else { ?>
                                 
                               <?php echo "Prospect"; ?>                            
                                 <?php } ?> 
@@ -215,7 +220,8 @@ td , td.py-1{
 
                 <div class="mt-3">
                   <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a> -->
-                  <?= $this->Form->button(__('Submit'),['class'=>'btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn edit-data','id'=>'submit']) ?>
+                <?= $this->Form->button(__('Submit'),['class'=>'btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn edit-data','id'=>'submit']) ?>
+                  
 
                 </div>
                 <?= $this->Form->end() ?> 
@@ -234,52 +240,11 @@ td , td.py-1{
   </div>
 </div> 
 <?= $this->Html->script('userscript') ?>
+<?= $this->Html->script('script1') ?>
 
   
 
-<script type="text/javascript">
-
-function performSearch() {
-      
-      // Declare search string 
-      var filter = searchBox.value.toUpperCase();
-      
-      // Loop through first tbody's rows
-      for (var rowI = 0; rowI < trs.length; rowI++) {
-        
-        // define the row's cells
-        var tds = trs[rowI].getElementsByTagName("td");
-
-    // hide the row
-    trs[rowI].style.display = "none";
-    
-    // loop through row cells
-    for (var cellI = 0; cellI < tds.length; cellI++) {
-
-        // if there's a match
-        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
-
-          // show the row
-          trs[rowI].style.display = "";
-          
-            // skip to the next row
-            continue;
-            
-          }
-    }
-}
-
-}
-
-// declare elements
-const searchBox = document.getElementById('search-input');
-const table = document.getElementById("datatablesSimple");
-const trs = table.tBodies[0].getElementsByTagName("tr");
-
-// add event listener to search box
-searchBox.addEventListener('keyup', performSearch);
-
-
+<script>
   $(document).ready(function(){
     
 
@@ -625,6 +590,11 @@ searchBox.addEventListener('keyup', performSearch);
         });
 
 });
+
+
+
+
+
 
 
 </script>
