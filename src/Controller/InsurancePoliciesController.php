@@ -21,21 +21,30 @@ class InsurancePoliciesController extends AppController
         $this->loadModel('InsuranceCompanies');
         $this->viewBuilder()->setLayout('admin');
 
-        $this->paginate = [
-            'contain' => ['InsuranceCompanies'],
-        ];
-        $insurancePolicies = $this->paginate($this->InsurancePolicies,[
+        // $this->paginate = [
+        //     'contain' => ['InsuranceCompanies'],
+        // ];
+        $insurancePolicies = $this->paginate($this->InsurancePolicies->find('all')
+        ->contain('InsuranceCompanies'),
+        // ->where(['deleted' => 1]),
+        [
             'limit' => 4,
             'order' => [
                 'id' => 'desc',
             ],
-        ]);
+        ]
+    );
+    // $insurancePolicies = $this->InsurancePolicies->find('all')->contain(['InsuranceCompanies'=>function($q)use ($deleted){ return $q->where(['InsurancePolicies.deleted'=>$deleted]);}]);
+
+    // dd($insurancePolicies);
+            
         // dd($insurancePolicies);
         // $insurancePolicies = $this->paginate($this->InsurancePolicies);
         $insuranceCompanies = $this->InsuranceCompanies->find('list', ['keyField' => 'id', 'valueField' => 'name']); 
 
         $this->set(compact('insurancePolicies','insuranceCompanies'));
     }
+   
 
     public function userstatus($id = null, $status){
            

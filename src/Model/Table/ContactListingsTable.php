@@ -48,7 +48,11 @@ class ContactListingsTable extends Table
             'joinType' => 'INNER',
         ]);
 
-        $this->hasMany('CompanyAssets');
+        $this->hasMany('CompanyAssets',[
+        
+        'foreignKey' => 'contact_listing_id',
+    ]);
+       
 
     }
 

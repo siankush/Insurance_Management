@@ -70,7 +70,7 @@ img#policyimg {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICIES LISTINGS</h1>
-<a href="/insurance-policies/add" class="addcomp">Add Company</a>
+<a href="/insurance-policies/add" class="addcomp">Add Policy</a>
 
         <table class="table table-hover" >
 
@@ -87,6 +87,7 @@ img#policyimg {
             </thead>
             <tbody>
             <?php $n = $this->Paginator->counter('{{start}}') ?>
+            
 
             <?php foreach ($insurancePolicies as $insurancePolicy): ?>
                 <?php if($insurancePolicy->deleted == 1) :?>

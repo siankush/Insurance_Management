@@ -41,6 +41,8 @@ class UsersController extends AppController
         $this->set(compact('users'));
     }
 
+
+
     /**
      * View method
      *
@@ -85,7 +87,8 @@ class UsersController extends AppController
 
     }
 
-    public function login(){
+    public function login()
+    {
                     
         $this->request->allowMethod(['get','post']);
         $result = $this->Authentication->getResult();    

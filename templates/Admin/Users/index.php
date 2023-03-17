@@ -114,6 +114,9 @@ button#useradd {
                      <li><a href="/insurance-policies/index"><i class="fa fa-table purple_color2"></i> <span>Insurance Policy</span></a></li>
                    
                      <li><a href="/admin/users/"><i class="fa fa-briefcase blue1_color"></i> <span>Users</span></a></li>
+
+                     <li><a href="/CompanyAssets/index"><i class="fa fa-briefcase blue1_color"></i> <span>Pending</span></a></li>
+
                    
                   </ul>
                </div>
@@ -175,6 +178,7 @@ button#useradd {
 
             <?php foreach ($users as $user): ?>
                 <?php if($user->deleted==1): ?>
+                  
             <tr id="data<?php echo $user->id;?>" class="tabledata_user">
             <td><?= h($n); ?></td>
                     <td><?= h($user->first_name) ?></td>
@@ -199,6 +203,7 @@ button#useradd {
                     </td>
                    
             </tr>
+      
             <?php endif; ?>
             <?php $n++; ?>
 

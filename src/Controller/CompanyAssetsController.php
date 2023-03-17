@@ -18,11 +18,18 @@ class CompanyAssetsController extends AppController
      */
     public function index()
     {
+        // $this->loadModel('ContactListings');
+        $this->viewBuilder()->setLayout('admin');
+
         $this->paginate = [
-            'contain' => ['Users', 'InsuranceCompanies', 'InsurancePolicies'],
+            'contain' => ['Users', 'InsuranceCompanies', 'InsurancePolicies','ContactListings'],
         ];
         $companyAssets = $this->paginate($this->CompanyAssets);
 
+        // $insuranceCompanies = $this->InsuranceCompanies->find('list', ['keyField' => 'id', 'valueField' => 'name']); 
+        // dd($companyAsset->contact_listing->name);  
+        // $contactlistname = $this->ContactListings->find('list', ['keyField' => 'id', 'valueField' => 'name']);  
+        // dd( $companyAssets);
         $this->set(compact('companyAssets'));
     }
 

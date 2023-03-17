@@ -164,10 +164,43 @@ class ContactListingsController extends AppController
         // $insuranceCompany = $this->InsuranceCompanies->get($id, [
         //     'contain' => [],
         // ]);
+        
         $companyAsset = $this->CompanyAssets->newEmptyEntity();
+        if ($this->request->is(['patch', 'post', 'put'])) {
+                //  dd($this->request->getData());
+                $data = $this->request->getData();
+                $companyAsset = $this->CompanyAssets->patchEntity($companyAsset, $data);
+                $this->CompanyAssets->save($companyAsset);
+                
+                $companyAsset = $this->CompanyAssets->newEmptyEntity();
+                // dd($data['user_id1']);
 
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $companyAsset = $this->CompanyAssets->patchEntity($companyAsset, $this->request->getData());
+                $companyAsset->user_id = $data['user_id1'];
+            
+                $companyAsset->contact_listing_id = $data['contact_listing_id1'];
+                $companyAsset->insurance_company_id = $data['insurance_company_id1'];
+                $companyAsset->insurance_policy_id = $data['insurance_policy_id1'];
+                $companyAsset->premium = $data['premium1'];
+                $companyAsset->term_length = $data['term_length1'];
+                $companyAsset->status = $data['status1'];
+                $companyAsset->deleted = $data['deleted1'];
+                $companyAsset->policy_status = $data['policy_status1'];
+                  
+                $this->CompanyAssets->save($companyAsset);
+                
+                $companyAsset = $this->CompanyAssets->newEmptyEntity();
+                // dd($data['user_id1']);
+
+                $companyAsset->user_id = $data['user_id2'];
+                $companyAsset->contact_listing_id = $data['contact_listing_id2'];
+                $companyAsset->insurance_company_id = $data['insurance_company_id2'];
+                $companyAsset->insurance_policy_id = $data['insurance_policy_id2'];
+                $companyAsset->premium = $data['premium2'];
+                $companyAsset->term_length = $data['term_length2'];
+                $companyAsset->status = $data['status2'];
+                $companyAsset->deleted = $data['deleted2'];
+                $companyAsset->policy_status = $data['policy_status2'];
+
             if ($this->CompanyAssets->save($companyAsset)) {
                  
                 $this->Flash->success(__('The company asset has been saved.'));
@@ -202,7 +235,8 @@ class ContactListingsController extends AppController
         // ->select(['status'])
         // ->toArray();
         // $insuranceStatus = $this->InsurancePolicies->get($id);
-        $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies','InsuranceCompanies'])->where(['contact_listing_id'=> $id])->all();        
+        $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies','InsuranceCompanies'])->where(['contact_listing_id'=> $id,'policy_status'=>1])->all();
+           
         // $companyAssets1 = $this->CompanyAssets->find()->where(['contact_listing_id'=> $id])->sumOf('premium');        
         // $companyname = $this->CompanyAssets->find('all')->contain('InsuranceCompanies')->where(['contact_listing_id'=> $id])->all();        
 //         foreach($companyAsset->insurance_policy as $a){
@@ -230,12 +264,13 @@ class ContactListingsController extends AppController
                   
             //     $deleted = $this->request->getData('deleted');
             
-                $companyasset = $this->CompanyAssets->find('all')->where(['contact_listing_id'=>$id])->first();
+                $companyasset = $this->CompanyAssets->find('all')->where(['id'=>$id])->first();
+          
                 if($companyasset->deleted == 1){
-
+              
                     $companyasset['deleted'] = 0;
                     $companyasset['policy_status'] = 0;
-
+                    
                 }else{
 
                     $companyasset['deleted'] = 1;
@@ -244,7 +279,7 @@ class ContactListingsController extends AppController
                 if($this->CompanyAssets->save($companyasset)){
                     echo json_encode(array(
                         "status" => 1,
-                        "message" => "The contactlisting saved. Please, try again.",
+                        "message" => "The contactlisting saved.",
                     ));
                     exit;
                 }           
