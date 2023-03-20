@@ -4,6 +4,75 @@
 	margin: 0;
 	padding: 0;
 }
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%; 
+    background: #000038;
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursorAnim .5s infinite alternate;
+    pointer-events: none;
+    z-index: 58;
+    opacity: .6;
+
+}
+
+
+.cursor::after {
+    content: "";
+    background: #000038;
+
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 8px solid #000038 ;
+    border-radius: 50%;
+    opacity: .5;
+    top: -8px;
+    left: -8px;
+    animation: cursorAnim2 .5s infinite alternate;
+}
+
+@keyframes cursorAnim {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.7);
+    }
+}
+
+@keyframes cursorAnim2 {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.4);
+    }
+}
+
+@keyframes cursorAnim3 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.expand {
+    animation: cursorAnim3 .5s forwards;
+    border: 1px solid red;
+    
+}
+
 body {
 	background: #ddd; height:100%;overflow-x: hidden;}	
 .text{color:white;font-size:220px;text-align:center;}
@@ -154,7 +223,8 @@ font-size:45px;}
 
  <?php echo $this->element('sidebar') ?>
       <!-- partial -->
-     
+      <div class="cursor"></div>
+    
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
@@ -249,7 +319,7 @@ foreach ($companyAssetss as $company) {
 // $totalPrice = $companyAssetss->sumOf('premium');
 ?>
 
-                 
+
                 
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
@@ -334,8 +404,7 @@ foreach ($companyAssetss as $company) {
           </div>
           <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
     <!-- <i class="fa fa-whatsapp my-float"></i> -->
-    <i class="fa-brands fa-whatsapp my-float"></i>
-</a>
+    <i class="fa-brands fa-whatsapp my-float"></i></a>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -350,6 +419,7 @@ foreach ($companyAssetss as $company) {
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+
   <script>
 $(document).ready(function() {
   setTimeout(function() {
@@ -363,6 +433,21 @@ $(document).ready(function() {
   }, 900);});
 
   </script>
+  <script>
+              const cursor = document.querySelector('.cursor');
+
+        document.addEventListener('mousemove', e => {
+            cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+        })
+
+        document.addEventListener('click', () => {
+            cursor.classList.add("expand");
+
+            setTimeout(() => {
+                cursor.classList.remove("expand");
+            }, 500)
+        })
+</script>
 <script>
 
 function timeCount() {

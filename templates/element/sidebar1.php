@@ -63,6 +63,8 @@ p {
                      <li><a href="/insurance-policies/index"><i class="fa fa-table purple_color2"></i> <span>Insurance Policy</span></a></li>
                    
                      <li><a href="/admin/users/"><i class="fa fa-briefcase blue1_color"></i> <span>Users</span></a></li>
+                     <li><a href="/CompanyAssets/index"><i class="fa fa-briefcase blue1_color"></i> <span>Pending</span></a></li>
+
                   </ul>
                </div>
             </nav>

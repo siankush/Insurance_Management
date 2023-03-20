@@ -149,7 +149,7 @@ input#searchbox {
                          </td>
                          <td>
                           <?php $asserarray = array(); foreach($contactlist->company_assets as $assets):
-                                  $asserarray[] =+ $assets->policy_status;
+                                  $asserarray[] =+ $assets->checkstatus;
                                 endforeach;
                             ?>
                          <?php  if(in_array(1,$asserarray)) {?>

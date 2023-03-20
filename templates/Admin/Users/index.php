@@ -167,7 +167,8 @@ input#searchbox {
 
             <thead>
             <tr id="#tablerow_user">
-            <th>Sr.No</th>
+                    <th>Sr.No</th>
+                    <th>Agent Id</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
                     <th>EMAIL</th>
@@ -185,6 +186,7 @@ input#searchbox {
                 <?php if($user->deleted==1): ?>
             <tr id="data<?php echo $user->id;?>" class="tabledata_user">
             <td><?= h($n); ?></td>
+            <td><?= h($user->id) ?></td>
                     <td><?= h($user->first_name) ?></td>
                     <td><?= h($user->last_name) ?></td>
                     <td><?= h($user->email) ?></td>

@@ -255,7 +255,6 @@ foreach ($companyAssetss as $company) {
             
           </div>
         </div>
-<!--   -->
 
 <div class="content-wrapper " id="contentToPrint">
 <div class="container background-container">  
@@ -273,6 +272,7 @@ if($totalPrice>0){
         <th>Insurance Policy</th>
         <th>Premium</th>
         <th>Term Length</th>
+        <th>Status</th>
         <th>Action</th>
 
       </tr>
@@ -281,7 +281,7 @@ if($totalPrice>0){
     <?php $n = $this->Paginator->counter('{{start}}') ?>
 
     <?php foreach($companyAssetss as $company){ ?>
-      <?php if($company->deleted == 1) : ?>
+      <?php if($company->deleted == 1 || $company->policy_status == 1) : ?>
 
       <tr id="data<?php echo $company->id;?>">
         <td><?php echo $n ?></td>
@@ -290,6 +290,15 @@ if($totalPrice>0){
         <td><?php   echo $company->insurance_policy->name;  ?></td>
         <td><?php   echo $company->insurance_policy->premium; ?></td>
         <td><?php   echo $company->term_length; ?></td>
+        <td>
+ 
+ <?php  if($company->checkstatus == 1) : ?>
+   <?php  echo 'Approved'; ?>
+   <?php else : ?>
+   <?php  echo 'Pending'; ?>
+                       
+    <?php endif; ?> 
+</td>
         <td>
           <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted?>" deletepolicy-id ="<?= $company->id?>"></i>                          
          </td>
@@ -326,6 +335,8 @@ if($totalPrice>0){
     <!-- <i class="fa fa-whatsapp my-float"></i> -->
     <i class="fa-brands fa-whatsapp my-float"></i>
 </a>
+
+
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
