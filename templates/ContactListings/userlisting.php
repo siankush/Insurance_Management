@@ -16,7 +16,18 @@ th {
 td , td.py-1{
     font-size: 17px !important;
 }
-
+a.badge.badge-sm.bg-gradient-secondary {
+    background: #d42d00;
+    font-size: 14px;
+    border-radius: 10px;
+    color: white !important;
+}
+a.badge.badge-sm.bg-gradient-success {
+    background: #00c583;
+    font-size: 14px;
+    border-radius: 10px;
+    color: white !important;
+}
 .stretch-card > .card {
     width: 100% !important;
     min-width: 100% !important;
@@ -31,28 +42,54 @@ td , td.py-1{
     flex-direction: column;
     width: 100% !important;
 }
-</style>
-<?php echo $this->element("sidebar"); ?>
+button.btn-close{
+  border:none;
+}
+.col-lg-12.grid-margin.stretch-card {
+    margin-top: 50px;
+}
+i.fa-solid.fa-xmark {
+    font-size: 24px;
+    color: black;
+    background: white;
+}
+.message.success {
+    background: #e3fcec;
+    color: #1f9d55;
+    border-color: #51d88a;
+    margin-top: -115px !important;
+}
 
-      <div class="main-panel" id="change-status">
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+</style>
+<?php echo $this->element("sidebar"); ?>     
+      <div class="main-panel background-container" id="change-status">
         <div class="content-wrapper">
-          <div class="row">
-<?php echo $this->Flash->render(); ?>
-<div class="text-center col-2 mb-2">
-<input type="text" class="form-control" id="search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-</div>
-<div class="col-lg-12 grid-margin stretch-card">
+          <div class="row">              
+              <div class="col-lg-12 grid-margin stretch-card">
                   <div class="card">
                       <div class="card-body">
                     <!-- <?= $this->Html->link(__('Add'), ['controller'=>'ContactListings','action' => 'add'], ['class' => 'btn btn-primary float-right','type'=>'button']) ?> -->
+                    <?= $this->Form->create(null,['type'=>'GET']) ?>
+    <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search','id'=>'searchbox']) ?>
+    <!-- <?= $this->Form->submit() ?> -->
+    <?= $this->Form->end() ?>
                     <a href="/contact-listings/add" class="btn btn-primary float-right">Add</a>                    
                   <h4 class="card-title">Contact Listings</h4>
+                  <?php echo $this->Flash->render(); ?>
+
                   <div class="table-responsive">
+                
                     <table class="table table-striped" id="datatablesSimple">
                       <thead>
                         <tr>
                           <th>
-                            Sr.
+                            Sr.No
                           </th>
                           <th>
                             Name
@@ -104,21 +141,18 @@ td , td.py-1{
                           <!-- <?= h($contactlist->status); ?> -->
                           <?php  if($contactlist->status == 1) : ?>
                             
-                            <?= $this->Form->postLink(__('Active'),['action' => 'userstatus', $contactlist->id, $contactlist->status],['class'=>'badge badge-sm bg-gradient-success'], ['confirm' => __('Are you sure you want to Inactive ?', $contactlist->id)]) ?>
+                            <?= $this->Form->postLink(__('Active'),['action' => 'userstatus', $contactlist->id, $contactlist->status],['class'=>'badge badge-sm bg-gradient-success','confirm' => __('Are you sure you want to Inactive ?', $contactlist->id)]) ?>
                             <?php else : ?>
                                 
-                                <?= $this->Form->postLink(__('Inactive'), ['action' => 'userstatus', $contactlist->id, $contactlist->status],['class'=>'badge badge-sm bg-gradient-secondary'], ['confirm' => __('Are you sure you want to Active ?', $contactlist->id)]) ?>
+                                <?= $this->Form->postLink(__('Inactive'), ['action' => 'userstatus', $contactlist->id, $contactlist->status],['class'=>'badge badge-sm bg-gradient-secondary','confirm' => __('Are you sure you want to Active ?', $contactlist->id)]) ?>
                                 <?php endif; ?> 
                          </td>
                         <td>
                           <?php $asserarray = array(); foreach($contactlist->company_assets as $assets):
                                   $asserarray[] =+ $assets->checkstatus;
-                                  endforeach;
-                                  ?>
-            
-
-                        <?php ?>          
-                         <?php  if(in_array(1,$asserarray) ) {?>
+                           endforeach;
+                            ?>
+                         <?php  if(in_array(1,$asserarray)) {?>
                                   <?php echo "Client"; ?>                            
                             <?php }
                             else { ?>
@@ -134,8 +168,8 @@ td , td.py-1{
                           <i class="fa-solid fa-trash cursor-pointer delete-user" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $contactlist->deletestatus?>" deleteuser-id ="<?= $contactlist->id?>"></i>                          
                           </td>
                         </tr>
-                        <?php endif; ?>
                         <?php $n++; ?>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                       </tbody>
                     </table>
@@ -156,12 +190,16 @@ td , td.py-1{
             </div>
           </div>
         </div>
+        <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023 All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made By SkyDash <i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
         <!-- partial -->
@@ -181,7 +219,7 @@ td , td.py-1{
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Edit</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
        </div>
 
        <!-- Modal body -->
@@ -239,362 +277,58 @@ td , td.py-1{
     </div>
   </div>
 </div> 
+
+<script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase().trim();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+
+</script>
 <?= $this->Html->script('userscript') ?>
 <?= $this->Html->script('script1') ?>
 
   
 
-<script>
-  $(document).ready(function(){
-    
 
 
-    var fname_err = true;  
-    var lname_err = true;
-    var email_err = true;
-    var phone_err = true;      
-    var pass_err = true;
-    var conpass_err = true;
-    var address_err = true;
-    
 
-    $('#uname').hide();
-    $('#name').keyup(function(){
-        username_check();
-    });
 
-    function username_check(){
-        var user_val = $('#name').val();                
 
-        if(user_val.length == ''){
-            $('#uname').show();
-            $('#uname').html("Please fill first name");
-            $('#uname').focus();
-            $('#uname').css("color","red");
-            fname_err = false;
-            return false;
 
-        }else{
-            $('#uname').hide();
-        }
 
-        if((user_val.length < 3) || (user_val.length > 20)){
-            $('#uname').show();
-            $('#uname').html("please enter user name between 3 and 20");
-            $('#uname').focus();
-            $('#uname').css("color","red");
-            fname_err = false;
-            return false;
-
-        }else{
-            $('#uname').hide();
-        }
-
-
-        if(!isNaN(user_val)){
-            $('#uname').show();
-            $('#uname').html("please enter valid name");
-            $('#uname').focus();
-            $('#uname').css("color","red");
-            fname_err = false;
-            return false;
-
-        }else{
-            $('#uname').hide();
-        }
-        
-    }
-
-                //----------------------last name validation--------------
-
-    $('#luname').hide();                
-    $('#lastName').keyup(function(){
-        lastname_check();
-    });
-
-    function lastname_check(){
-        var user_val1 = $('#lastName').val();                
-
-        if(user_val1.length == ''){
-            $('#luname').show();
-            $('#luname').html("Please fill last name");
-            $('#luname').focus();
-            $('#luname').css("color","red");
-            lname_err = false;
-            return false;
-
-        }else{
-            $('#luname').hide();
-        }
-
-        if((user_val1.length < 3) || (user_val1.length > 20)){
-            $('#luname').show();
-            $('#luname').html("please enter user name between 3 and 20");
-            $('#luname').focus();
-            $('#luname').css("color","red");
-            lname_err = false;
-            return false;
-
-        }else{
-            $('#luname').hide();
-        }
-
-        if(!isNaN(user_val1)){
-            $('#luname').show();
-            $('#luname').html("please enter valid name");
-            $('#luname').focus();
-            $('#luname').css("color","red");
-            lname_err = false;
-            return false;
-
-        }else{
-            $('#luname').hide();
-        }
-        
-    }
-
-                //----------------------email validation--------------
-    $('#uemail').hide();
-    $('#email').keyup(function(){
-        user_mail_check();
-    });
-                
-    function user_mail_check(){
-        var email_val = $('#email').val(); 
-        var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;               
-
-        // $.ajax({
-        //     type:'post',
-        //     url: 'http://localhost:8765/users/register',
-        //     data: {
-        //         'check_Emailbtn':1,
-        //         'email':email_val,
-        //     },
-        //     success: function (response) {
-        //         console.log(response);
-        //     }
-        // });
-
-        if(email_val.length == ''){
-            $('#uemail').show();
-            $('#uemail').html("Please fill email");
-            $('#uemail').focus();
-            $('#uemail').css("color","red");
-            email_err = false;
-            return false;
-
-        }else{
-            $('#uemail').hide();
-        }
-
-        if (!email_val.toLowerCase().match(mailformat)){
-            $('#uemail').show();
-            $('#uemail').html("Please fill valid email");
-            $('#uemail').focus();
-            $('#uemail').css("color","red");
-            email_err = false;
-            return false;
-
-        }else{
-            $('#uemail').hide();
-        }
-
-
-        if((email_val.length < 5) || (email_val.length > 50)){
-            $('#uemail').show();
-            $('#uemail').html("*please enter valid email");
-            $('#uemail').focus();
-            $('#uemail').css("color","red");
-            email_err = false;
-            return false;
-
-        }else{
-            $('#uemail').hide();
-        }
-        
-        
-    }
-
-    //----------------------phone validation--------------
-
-    $('#uphone').hide();
-    $('#phone').keyup(function(){
-        phone_check();
-    });
-                
-    function phone_check(){
-        var phone_val = $('#phone').val();           
-
-        if(phone_val.length == ''){
-            $('#uphone').show();
-            $('#uphone').html("Please fill 10 digit phone number");
-            $('#uphone').focus();
-            $('#uphone').css("color","red");
-            phone_err = false;
-            return false;
-
-        }else{
-            $('#uphone').hide();
-        }
-       
-
-        if((phone_val.length != 10) || (isNaN(phone_val))){
-            $('#uphone').show();
-            $('#uphone').html("phone number must be 10 digit only");
-            $('#uphone').focus();
-            $('#uphone').css("color","red");
-            phone_err = false;
-            return false;
-
-        }else{
-            $('#uphone').hide();
-        }
-        
-        
-    }
-
-                //----------------------password validation--------------
-    $('#upass').hide();
-    $('#password').keyup(function(){
-        password_check();
-    });
-
-    function password_check(){
-        var pass = $('#password').val();
-            if(pass.length == ''){
-                $('#upass').show();
-                $('#upass').html("Please fill password");
-                $('#upass').focus();
-                $('#upass').css("color","red");
-                pass_err = false;
-                return false;
-
-            }else{
-                $('#upass').hide();
-            }
-
-            if((pass.length < 5) || (pass.length > 20)){
-                $('#upass').show();
-                $('#upass').html("password length must be 5 words");
-                $('#upass').focus();
-                $('#upass').css("color","red");
-                pass_err = false;
-                return false;
-    
-            }else{
-                $('#upass').hide();
-            }  
-
-        
-    }
-
-                    //----------------------confirm password validation--------------
-
-    $('#conupass').hide();
-    $('#cpassword').keyup(function(){
-        con_password();
-    });
-
-        function con_password(){
-
-            var conpass = $('#cpassword').val();
-            var pass = $('#password').val();
-
-            if(conpass.length == ''){
-                $('#conupass').show();
-                $('#conupass').html("Please fill confirm password");
-                $('#conupass').focus();
-                $('#conupass').css("color","red");
-                conpass_err = false;
-                return false;
-
-            }else{
-                $('#conupass').hide();
-            }
-
-            if(pass != conpass){
-                $('#conupass').show();
-                $('#conupass').html("Password not matching");
-                $('#conupass').focus();
-                $('#conupass').css("color","red");
-                conpass_err = false;
-                return false;
-
-            }else{
-                $('#conupass').hide();
-            }
-        }  
-
-                //----------------------address validation--------------
-                      
-        $('#uaddress').hide();
-        $('#address').keyup(function(){
-        address_check();
-        });                
-        function address_check(){
-        var user_val = $('#address').val();                
-
-        if(user_val.length == ''){
-            $('#uaddress').show();
-            $('#uaddress').html("Please fill address");
-            $('#uaddress').focus();
-            $('#uaddress').css("color","red");
-            address_err = false;
-            return false;
-
-        }else{
-            $('#uaddress').hide();
-        }        
-    }
-
-        //----------------------address validation--------------
-
-        
-
-        
-
-
-        $('#submit').click(function(){
-            fname_err = true;
-            lname_err = true;
-            email_err = true;
-            phone_err = true;
-            pass_err = true;
-            conpass_err = true;
-            address_err = true;
-
-            username_check();
-            lastname_check();
-            user_mail_check();            
-            phone_check();
-            password_check();
-            con_password();
-            address_check();
-            
-
-            
-            // if ($('input[name="gender"]:checked').length == 0) {
-            //     $("#radio").html("* please select one");
-            //     return false; }
-
-            if((fname_err == true)&&(lname_err == true)&&(umail_err == true)&&(phone_err == true)&&(pass_err == true)&&
-            (conpass_err == true)&&(address_err == true)){
-                return true;                
-            }else{
-                return false;
-            }
-
-            
-
-
-        });
-
-});
-
-
-
-
-
-
-
-</script>

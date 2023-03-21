@@ -61,6 +61,7 @@ div {
 } */
 </style>
 <div class="container-fluid">
+<?php echo $this->Flash->render(); ?>
 
 <div class="row">
 

@@ -80,4 +80,17 @@ return [
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
+    
+    'EmailTransport' => [
+        'gmail' => [
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'username' => 'abishekkumar1611@gmail.com', //eg: sample[at]gmail.com
+            'password' => 'nnojkuvgumxpmgrf', //email password
+            'className' => 'Smtp',
+            'tls' => true,
+            'client' => null,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
+    ],
 ];

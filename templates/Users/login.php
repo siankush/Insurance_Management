@@ -20,6 +20,19 @@ a.text-primary {
 h6.font-weight-light {
     color: white;
 }
+.message.success {
+    background: #e3fcec !important;
+    color: #1f9d55 !important;
+    border-color: #51d88a !important;
+    position: absolute !important;
+    z-index: 1 !important;
+    margin-top: 51px !important;
+    width: 800px !important;
+    text-align: center !important;
+    /* margin: 0 auto; */
+    /* display: block; */
+    margin-left: 611px !important;
+}
 </style>
 <div class="container-scroller">
 <?php echo $this->Flash->render(); ?>

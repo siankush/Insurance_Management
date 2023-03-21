@@ -63,7 +63,10 @@ p {
                      <li><a href="/insurance-policies/index"><i class="fa fa-table purple_color2"></i> <span>Insurance Policy</span></a></li>
                    
                      <li><a href="/admin/users/"><i class="fa fa-briefcase blue1_color"></i> <span>Users</span></a></li>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
                      <li><a href="/CompanyAssets/index"><i class="fa fa-briefcase blue1_color"></i> <span>Pending</span></a></li>
 
                   </ul>
@@ -77,9 +80,7 @@ p {
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <a href="index.html"><?php echo $this->Html->image('logo/logo.png') ?></a>
-                        </div>
+                      
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>

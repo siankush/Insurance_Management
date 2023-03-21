@@ -13,7 +13,7 @@ ak(document).on("click", ".delete-user-info", function(){
 // var statusData = $(this).attr("status-id");
 
  swal({
- title: "Are you sure to delete this  of ?",
+ title: "Are you sure to delete this  ?",
  text: "Delete Confirmation?",
  type: "warning",
  showCancelButton: true,
@@ -105,9 +105,9 @@ ak(document).on("click", ".get-userinfo", function(){
         // alert(data);
         
            if (data['status'] == 0) {
-                alert(data['message']);
+                // alert(data['message']);
             } else {
-             swal("Good job!", "The contactlisting has been saved!", "success");
+             swal("Good job!", "The user has been saved!", "success");
    
               }
                ak('#change-status').load('/admin/users/ #change-status');
@@ -133,7 +133,7 @@ ak(document).on("click", ".get-userinfo", function(){
       // var statusData = $(this).attr("status-id");
   
         swal({
-        title: "Are you sure to delete this  of ?",
+        title: "Are you sure to delete this  ?",
         text: "Delete Confirmation?",
         type: "warning",
         showCancelButton: true,
@@ -222,7 +222,7 @@ ak(document).on("click", ".get-userinfo", function(){
            if (data['status'] == 0) {
                 alert(data['message']);
             } else {
-             swal("Good job!", "The contactlisting has been saved!", "success");
+             swal("Good job!", "The insurance company has been saved!", "success");
    
               }
               ak('#myModalcompany').hide();
@@ -241,7 +241,7 @@ ak(document).on("click", ".get-userinfo", function(){
       // var statusData = $(this).attr("status-id");
       
     swal({
-    title: "Are you sure to delete this  of ?",
+    title: "Are you sure to delete this  ?",
     text: "Delete Confirmation?",
     type: "warning",
     showCancelButton: true,
@@ -303,8 +303,14 @@ ak(document).on("click", ".get-policyinfo", function(){
            // $('#brand').val(car['brand']['name']);
            $('#policylisting_id').val(policylisting['id']);
           //  $('#image').val(policylisting['image']);
+<<<<<<< HEAD
              var image = policylisting['image'];
              document.querySelector('#showimg').setAttribute('src', '/img/' +image);
+=======
+          // document.getElementById('image-preview').src = data.image_url;
+          var image = policylisting['image'];
+          document.querySelector('#showimg').setAttribute('src', '/img/' +image);
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
          
     }
@@ -343,7 +349,7 @@ ak(document).on("click", ".edit-policy", function(e){
          if (data['status'] == 0) {
               alert(data['message']);
           } else {
-           swal("Good job!", "The contactlisting has been saved!", "success");
+           swal("Good job!", "The insurance policy has been saved!", "success");
  
             }
              ak('#change-status').load('/insurance-policies/index #change-status');

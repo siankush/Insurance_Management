@@ -17,7 +17,7 @@ $(document).ready(function(){
     });
 
     function username_check(){
-        var user_val = $('#name').val();                
+        var user_val = $('#name').val().trim();                
 
         if(user_val.length == ''){
             $('#uname').show();
@@ -66,7 +66,7 @@ $(document).ready(function(){
     });
 
     function lastname_check(){
-        var user_val1 = $('#lastName').val();                
+        var user_val1 = $('#lastName').val().trim();                
 
         if(user_val1.length == ''){
             $('#luname').show();
@@ -113,7 +113,7 @@ $(document).ready(function(){
     });
                 
     function user_mail_check(){
-        var email_val = $('#email').val(); 
+        var email_val = $('#email').val().trim(); 
         var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;               
 
         // $.ajax({
@@ -176,7 +176,7 @@ $(document).ready(function(){
     });
                 
     function phone_check(){
-        var phone_val = $('#phone').val();           
+        var phone_val = $('#phone').val().trim();           
 
         if(phone_val.length == ''){
             $('#uphone').show();
@@ -213,7 +213,7 @@ $(document).ready(function(){
     });
 
     function password_check(){
-        var pass = $('#password').val();
+        var pass = $('#password').val().trim();
             if(pass.length == ''){
                 $('#upass').show();
                 $('#upass').html("Please fill password");
@@ -250,8 +250,8 @@ $(document).ready(function(){
 
         function con_password(){
 
-            var conpass = $('#cpassword').val();
-            var pass = $('#password').val();
+            var conpass = $('#cpassword').val().trim();
+            var pass = $('#password').val().trim();
 
             if(conpass.length == ''){
                 $('#conupass').show();
@@ -285,7 +285,7 @@ $(document).ready(function(){
         address_check();
         });                
         function address_check(){
-        var user_val = $('#address').val();                
+        var user_val = $('#address').val().trim();                
 
         if(user_val.length == ''){
             $('#uaddress').show();
@@ -343,7 +343,6 @@ $(document).ready(function(){
         });
 
 });
-
 
 
 

@@ -17,7 +17,11 @@ $(document).ready(function(){
     });
 
     function username_check(){
+<<<<<<< HEAD
         var user_val = $('#name').val();                
+=======
+        var user_val = $('#name').val().trim();                
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
         if(user_val.length == ''){
             $('#uname').show();
@@ -66,7 +70,11 @@ $(document).ready(function(){
     });
 
     function lastname_check(){
+<<<<<<< HEAD
         var user_val1 = $('#lastName').val();                
+=======
+        var user_val1 = $('#lastName').val().trim();                
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
         if(user_val1.length == ''){
             $('#luname').show();
@@ -113,7 +121,11 @@ $(document).ready(function(){
     });
                 
     function user_mail_check(){
+<<<<<<< HEAD
         var email_val = $('#email').val(); 
+=======
+        var email_val = $('#email').val().trim(); 
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
         var mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;               
 
         // $.ajax({
@@ -176,7 +188,11 @@ $(document).ready(function(){
     });
                 
     function phone_check(){
+<<<<<<< HEAD
         var phone_val = $('#phone').val();           
+=======
+        var phone_val = $('#phone').val().trim();           
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
         if(phone_val.length == ''){
             $('#uphone').show();
@@ -213,7 +229,11 @@ $(document).ready(function(){
     });
 
     function password_check(){
+<<<<<<< HEAD
         var pass = $('#password').val();
+=======
+        var pass = $('#password').val().trim();
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
             if(pass.length == ''){
                 $('#upass').show();
                 $('#upass').html("Please fill password");
@@ -250,8 +270,13 @@ $(document).ready(function(){
 
         function con_password(){
 
+<<<<<<< HEAD
             var conpass = $('#cpassword').val();
             var pass = $('#password').val();
+=======
+            var conpass = $('#cpassword').val().trim();
+            var pass = $('#password').val().trim();
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
             if(conpass.length == ''){
                 $('#conupass').show();
@@ -285,7 +310,11 @@ $(document).ready(function(){
         address_check();
         });                
         function address_check(){
+<<<<<<< HEAD
         var user_val = $('#address').val();                
+=======
+        var user_val = $('#address').val().trim();                
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
         if(user_val.length == ''){
             $('#uaddress').show();
@@ -348,4 +377,7 @@ $(document).ready(function(){
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9

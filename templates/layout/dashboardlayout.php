@@ -47,10 +47,16 @@ $cakeDescription = 'Insurance Management System';
 <<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<<<<<<< HEAD
     <!-- <?= $this->Html->script('script') ?> -->
 =======
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>    
 >>>>>>> 485d1b2c92a4c69ffa9820ea501b0cb96aed7e2c
+=======
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+    <!-- <?= $this->Html->script('script') ?> -->
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -69,7 +75,7 @@ $cakeDescription = 'Insurance Management System';
             <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
         </div>
     </nav> -->
-    <main class="main">
+    <main class="main ">
         <div class="container-fluid p-0">
             <?= $this->fetch('content') ?>
         </div>

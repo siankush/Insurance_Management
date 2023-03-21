@@ -75,6 +75,12 @@ button#useradd {
   padding-top: 0px;
   margin-top: -167px;
 }
+input#searchbox {
+    padding: 7px;
+    margin-bottom: 23px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
 </style>
 <body class="dashboard dashboard_1">
 <div class='container-fluid'>
@@ -129,9 +135,7 @@ button#useradd {
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <a href="index.html"><?php echo $this->Html->image('logo/logo.png') ?></a>
-                        </div>
+                        
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>
@@ -158,18 +162,23 @@ button#useradd {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">USERS LISTINGS</h1>
-        <table class="table table-hover" >
+<?= $this->Form->create(null,['type'=>'GET']) ?>
+    <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search And Enter','id'=>'searchbox']) ?>
+    <!-- <?= $this->Form->submit() ?> -->
+    <?= $this->Form->end() ?>
+        <table class="table table-hover" id="datatablesSimple">
 
             <thead>
             <tr id="#tablerow_user">
-            <th><?= $this->Paginator->sort('id') ?></th>
+                    <th>Sr.No</th>
+                    <th>Agent Id</th>
                     <th>FIRST NAME</th>
                     <th>LAST NAME</th>
                     <th>EMAIL</th>
                     <th>PHONE.NO</th>
                     <th>ADDRESS</th>
                     <th>STATUS</th>
-                    <th>CREATED AT</th>
+                    <!-- <th>CREATED AT</th> -->
                     <th class="actions">ACTIONS</th>
             </tr>
             </thead>
@@ -181,6 +190,7 @@ button#useradd {
                   
             <tr id="data<?php echo $user->id;?>" class="tabledata_user">
             <td><?= h($n); ?></td>
+            <td><?= h($user->id) ?></td>
                     <td><?= h($user->first_name) ?></td>
                     <td><?= h($user->last_name) ?></td>
                     <td><?= h($user->email) ?></td>
@@ -195,7 +205,8 @@ button#useradd {
                                 
                                 <?= $this->Form->postLink(__('Inactive'), ['action' => 'userstatus', $user->id, $user->status], ['class'=>'badge badge-sm bg-gradient-secondary','confirm' => __('Are you sure you want to Active ?', $user->id)]) ?>
                                 <?php endif; ?> 
-                         </td>                         <td><?= h($user->created_at) ?></td>
+                         </td>                         
+                         <!-- <td><?= h($user->created_at) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__(''), ['action' => 'view', $user->id],['class'=>'fa-solid fa-eye']) ?>
                         <i class="fa-solid fa-pen-to-square get-userinfo " data-bs-toggle="modal" data-bs-target="#myModal" style="color: orange; font-size: 18px;" edituser-id ="<?= $user->id ?>"></i>
@@ -203,10 +214,8 @@ button#useradd {
                     </td>
                    
             </tr>
-      
             <?php endif; ?>
             <?php $n++; ?>
-
             <?php endforeach; ?>
 
             </tbody>
@@ -219,7 +228,7 @@ button#useradd {
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{end}} total')) ?></p>
     </div>
                 </div>
                    
@@ -229,11 +238,7 @@ button#useradd {
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-       </div>
+     
 
        <!-- Modal body -->
        <div class="modal-body">
@@ -241,22 +246,27 @@ button#useradd {
    
    <div class="column-responsive column-80">
      <div class="insurancesCompany view content">
-       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;color:white">INSURANCE USER EDIT</h1>
+       <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:25px;color:white">INSURANCE USER EDIT</h1>
 
        <?= $this->Form->create($user,['id'=>'formid']) ?>
        <input type="hidden" id="userlisting_id" name="id">
        
-           <fieldset>
+       <fieldset>
                <legend><?= __('Edit User') ?></legend>
-               <?php
-                   echo $this->Form->control('first_name',['class'=>'policy','id'=>'first_name']);
-                   echo $this->Form->control('last_name',['class'=>'policy','id'=>'last_name']);
-                   echo $this->Form->control('email',['class'=>'policy','id'=>'email']);
-                   echo $this->Form->control('contact_number',['class'=>'policy','id'=>'contact_number']);
-                   echo $this->Form->control('address',['class'=>'policy', 'id'=> 'address']);
-               ?>
+               
+               <?php echo $this->Form->control('first_name',['class'=>'policy','id'=>'first_name']); ?>
+               <span id="uname"></span>
+               <?php echo $this->Form->control('last_name',['class'=>'policy','id'=>'last_name']); ?>
+               <span id="luname"></span>
+               <?php echo $this->Form->control('email',['class'=>'policy','id'=>'email']); ?>
+               <span id="uemail"></span>
+               <?php echo $this->Form->control('contact_number',['class'=>'policy','id'=>'contact_number']); ?>
+               <span id="uphone"></span>
+               <?php echo $this->Form->control('address',['class'=>'policy', 'id'=> 'address']); ?>
+               <span id="uaddress"></span>
+               
            </fieldset>
-           <?= $this->Form->button(__('Submit'),['class'=>'edit-user']) ?>
+           <?= $this->Form->button(__('Submit'),['class'=>'edit-user','id'=>'submit']) ?>
            <?= $this->Form->end() ?>
    </div>
 </div>
@@ -271,3 +281,46 @@ button#useradd {
   </div>
 </div> 
 <?= $this->Html->script('adminscript') ?>
+<?= $this->Html->script('admin_users_script') ?>
+<script>
+  function performSearch() {
+      
+      // Declare search string 
+      var filter = searchBox.value.toUpperCase();
+      
+      // Loop through first tbody's rows
+      for (var rowI = 0; rowI < trs.length; rowI++) {
+        
+        // define the row's cells
+        var tds = trs[rowI].getElementsByTagName("td");
+
+    // hide the row
+    trs[rowI].style.display = "none";
+    
+    // loop through row cells
+    for (var cellI = 0; cellI < tds.length; cellI++) {
+
+        // if there's a match
+        if (tds[cellI].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+          // show the row
+          trs[rowI].style.display = "";
+          
+            // skip to the next row
+            continue;
+            
+          }
+    }
+}
+
+}
+
+// declare elements
+const searchBox = document.getElementById('searchbox');
+const table = document.getElementById("datatablesSimple");
+const trs = table.tBodies[0].getElementsByTagName("tr");
+
+// add event listener to search box
+searchBox.addEventListener('keyup', performSearch);
+
+</script>

@@ -37,7 +37,11 @@ a.text-primary {
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                 <?php echo $this->Form->create($user)?>
                 <div class="form-group">                  
+<<<<<<< HEAD
                   <?php echo $this->Form->control("first_name",['label'=>false,'id'=>'name', 'class'=>'form-control form-control-lg','placeholder'=>'Username','required'=>false]); ?>
+=======
+                  <?php echo $this->Form->control("first_name",['label'=>false,'id'=>'name', 'class'=>'form-control form-control-lg','placeholder'=>'Firstname','required'=>false]); ?>
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
                   <span id="uname"></span>
                 </div>
                 <div class="form-group">                  
@@ -85,8 +89,13 @@ a.text-primary {
     <!-- page-body-wrapper ends -->
   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <?= $this->Html->script('script') ?>
 =======
 
   <?= $this->Html->script('script') ?>
 >>>>>>> 485d1b2c92a4c69ffa9820ea501b0cb96aed7e2c
+=======
+
+  <?= $this->Html->script('script') ?>
+>>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9

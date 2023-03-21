@@ -119,14 +119,15 @@ a.addcomp {
     
 <div class="container-fluid">
 <h3>Total Policies : <span class="badge"><?php echo count($companyAssets); ?></span></h3>
-    <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">COMPANIES LISTINGS</h1>
-    <a href="/insurance-companies/add" class="addcomp">Add Company</a>
+    <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICY UNAPPROVED LISTS</h1>
+    <!-- <a href="/insurance-companies/add" class="addcomp">Add Company</a> -->
     <table class="table table-hover" >
 
             <thead>
             <tr id="#tablerow_user">
                     <th>ID</th>
-                    <th><?= $this->Paginator->sort('contact_listing_id') ?></th>
+                    <th>AGENT ID</th>
+                    <th>USER NAME</th>
                     <th><?= $this->Paginator->sort('insurance_company_id') ?></th>
                     <th><?= $this->Paginator->sort('insurance_policy_id') ?></th>
                     <th><?= $this->Paginator->sort('premium') ?></th>
@@ -143,6 +144,7 @@ a.addcomp {
 
                     <tr class="tabledata_user">
                     <td><?= $this->Number->format($n) ?></td>
+                    <td><?= $companyAsset->has('user_id') ? ($companyAsset->contact_listing->user_id): ''?></td>
                     <td><?= $companyAsset->has('contact_listing') ? ($companyAsset->contact_listing->name): ''?></td>
                     <td><?= $companyAsset->has('insurance_company') ? ($companyAsset->insurance_company->name) : '' ?></td>
                     <td><?= $companyAsset->has('insurance_policy') ? ($companyAsset->insurance_policy->name) : '' ?></td>
@@ -152,10 +154,10 @@ a.addcomp {
                     <td>
                    <?php  if($companyAsset->checkstatus == 0) : ?>
                             
-                            <?= $this->Form->postLink(__('Pending'),['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-success'],['confirm' => __('Are you sure you want to approve ?', $companyAsset->id)]) ?>
+                            <?= $this->Form->postLink(__('Pending'),['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-success','confirm' => __('Are you sure you want to approve ?', $companyAsset->id)]) ?>
                             <?php else : ?>
                                 
-                                <?= $this->Form->postLink(__('Approve'), ['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-secondary'],['confirm' => __('Are you sure you want to pending ?', $companyAsset->id)]) ?>
+                                <?= $this->Form->postLink(__('Approve'), ['action' => 'policystatus', $companyAsset->id, $companyAsset->checkstatus],['class'=>'badge badge-sm bg-gradient-secondary','confirm' => __('Are you sure you want to pending ?', $companyAsset->id)]) ?>
                                 <?php endif; ?> 
                     </td>
 

@@ -66,7 +66,99 @@
 @import url(css/animate.css);
 @import url(css/flaticon.css);
 @import url(css/font-awesome.min.css);
+.whats-app {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    left: 15px;
+}
 
+.my-float {
+    margin-top: 16px;
+}
+
+i.icon-sun.mr-2 {
+    color: #ffdb00;
+    font-weight: 700;
+}
+a.whats-app {
+    margin-left: 1930px;
+}
+.whats-app {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    left: 15px;
+}
+
+.my-float {
+    margin-top: 16px;
+}
+
+button.navbar-toggler.navbar-toggler.align-self-center {
+    display: none;
+}
+.card.card-light-danger{
+    background: none !important;
+    background-image: url('../img/meeting.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card.card-light-blue{
+    background: none !important;
+    background-image: url('../img/client.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card.card-tale.bg1{
+    background: none !important;
+    background-image: url('../img/policy.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card.card-dark-blue{
+    background: none !important;
+    background-image: url('../img/insurance.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h4.location.font-weight-normal.text-white {
+    margin-right: -16px;
+}
+
+.card-people {
+    position: relative;
+    padding-top: 0px !important;
+}
+a.badge.badge-sm.bg-gradient-success {
+    background: #00c583;
+    font-size: 14px;
+    border-radius: 10px;
+}
+h4.card-title {
+    width: 50% !important;
+}
+a.badge.badge-sm.bg-gradient-secondary {
+    background: #d42d00;
+    font-size: 14px;
+    border-radius: 10px;
+}
 /* my css */
 nav#sidebar {
     background: #000038 !important;

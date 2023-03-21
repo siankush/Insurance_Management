@@ -51,11 +51,66 @@ th {
     height: 60px;
     border-radius: 100%;
 }
-.input.select.error {
-  display: none !important;
+select#policyname,select#premiumnumber {
+    border: 1px solid #CED4DA;
+    color: #495057;
 }
-#insurancesscomapny {
-  display: none;
+#download {
+    float: right;
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+    animation: button-loading-spinner 1s ease infinite;
+}
+#download--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+/* Paginator */
+.paginator {
+    text-align: right;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+.pagination li {
+    margin: 0 0.5rem;
+}
+.prev.disabled a,
+.next.disabled a {
+    cursor: not-allowed;
+    color: #606c76;
+}
+.asc:after {
+    content: " \2193";
+}
+.desc:after {
+    content: " \2191";
+}
+.card {
+    margin-top: 80px;
+}
+h1#check {
+    text-align: center;
+    margin-right: 180px;
 }
 </style>
 <div class="row">
@@ -113,14 +168,20 @@ th {
 
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 
     <?php echo $this->element("sidebar"); ?>
 
-      <div class="main-panel" >
+      <div class="main-panel" id="change-status">
+      <?php echo $this->Flash->render(); ?>
+
         <div class="content-wrapper">
-          <div class="row" style="justify-content: center;">
+        <button class="btn"  id="download"><i class="fa fa-download"></i> Download</button>
+
+
+          <div class="row background-container" style="justify-content: center;">
+          
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -128,14 +189,15 @@ th {
                   <!-- <h3><?= h($contactListings->name) ?> -->
                   <!-- <?= $this->Html->link(__('Add Policy'), [ $contactListings->id], ['class' => 'btn btn-primary float-right mb-4 data-bs-toggle="modal" data-bs-target="#exampleModal"']) ?> -->
                   <?php $totalPrice = 0;
-                
-                  foreach ($companyAssetss as $company) {
-                      $totalPrice += $company->insurance_policy->premium;
-                      // echo $company->insurance_policy->premium;
-                  } 
-                        // $totalPrice = $companyAssetss->sumOf('premium');
-                  ?>
-                 <div id="change-status">
+foreach ($companyAssetss as $company) {
+  
+    $totalPrice += $company->insurance_policy->premium;
+
+    // echo $company->insurance_policy->premium;
+} 
+// $totalPrice = $companyAssetss->sumOf('premium');
+?>
+                 
                   <h3>Total Policies : <span class="badge"><?php echo count($companyAssetss); ?></span></h3>
                   <h3>Total Premium Price : <span class="badge"><?php echo $totalPrice; ?></span></h3>
                 </div> 
@@ -143,6 +205,8 @@ th {
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add Policy
                   </button>
+                  <!-- <button onclick="window.print();">Convert HTML to PDF</button> -->
+
                   </h3>
                   <!-- <p class="card-description">
                     Add class <code>.table</code>
@@ -191,10 +255,13 @@ th {
             
           </div>
         </div>
-<!--   -->
 
-<div class="content-wrapper">
-<div class="container">  
+<div class="content-wrapper " id="contentToPrint">
+<div class="container background-container">  
+<?php  
+if($totalPrice>0){
+
+?>
 <table class="table table-hover">
   <h2 style="text-align: center; margin-bottom:20px;">Insurance List  </h2>
     <thead>
@@ -210,7 +277,7 @@ th {
       </tr>
     </thead>
     <tbody>
-    <?php $n=1; ?>
+    <?php $n = $this->Paginator->counter('{{start}}') ?>
 
     <?php foreach($companyAssetss as $company){ ?>
       <?php if($company->deleted == 1 || $company->policy_status == 1) : ?>
@@ -224,16 +291,16 @@ th {
         <td><?php   echo $company->term_length; ?></td>
         <td>
  
-          <?php  if($company->checkstatus == 1) : ?>
-            <?php  echo 'Approved'; ?>
-            <?php else : ?>
-            <?php  echo 'Pending'; ?>
-                                
-             <?php endif; ?> 
-        </td>
+ <?php  if($company->checkstatus == 1) : ?>
+   <?php  echo 'Approved'; ?>
+   <?php else : ?>
+   <?php  echo 'Pending'; ?>
+                       
+    <?php endif; ?> 
+</td>
         <td>
-          <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted ?>" deletepolicy-id ="<?= $company->id?>"></i>                          
-        </td>
+          <i class="fa-solid fa-trash delete-policy" style="color: red; font-size: 18px; cursor: pointer;" status-id ="<?= $companyAsset->deleted?>" deletepolicy-id ="<?= $company->id?>"></i>                          
+         </td>
       </tr>
       
     </tbody>
@@ -242,44 +309,24 @@ th {
     <?php } ?>
     
   </table>
-</div>
-<?php echo $this->Form->create($companyAsset,['id'=>'formid'])?>
-    <div class="form-group">                  
-    <input type="hidden" name="user_id" value="<?php echo $result->id ?>">
-    <input type="hidden" name="contact_listing_id" value="<?php echo $contactListings->id ?>">
+  
+  <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
-    <div class="container m-auto row">
-      <div class="col-3">
-      <?php echo $this->Form->control("insurance_company_id",['id'=>'', 'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-      <?php echo $this->Form->control("insurance_policy_id",['id'=>'', 'options' => $insurancePolicies,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-      <?php echo $this->Form->control("premium",['id'=>'', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-      <?php echo '<label for="make">Term Length</label>';
-            echo $this->Form->select('term_length', [
-              '3 month'=>'3 Month',
-              '6 month'=> '6 Month',
-              '9 month'=>'9 Month',
-            ],
-            ['class'=>'form-control p-2'],
-          );
-          ?>
-      </div>
-          <?php                
-              echo $this->Form->control('status',['class'=>'clt','label'=>false]);
-              echo $this->Form->control('deleted',['class'=>'clt','label'=>false]);
-          ?>
-          
-          <?php echo $this->Form->control('policy_status',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
-          
-          
-          <!-- <div class="form-group">                  
-            <input type="hidden" name="user_id1" value="<?php echo $result->id ?>">
-    <input type="hidden" name="contact_listing_id1" value="<?php echo $contactListings->id ?>">
+    <?php  
+}else{
+  echo "<h1 id='check'>No Records Found</h1>";
+}
+?>
+    </div>
+    
     </div>
     <div class="container m-auto row">
       <div class="col-3">
@@ -309,46 +356,11 @@ th {
           
           <?php echo $this->Form->control('policy_status1',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
 
-          <div class="form-group">                  
-            <input type="hidden" name="user_id2" value="<?php echo $result->id ?>">
-    <input type="hidden" name="contact_listing_id2" value="<?php echo $contactListings->id ?>">
-    </div>
-    <div class="container m-auto row">
-      <div class="col-3">
-      <?php echo $this->Form->control("insurance_company_id2",['id'=>'', 'options' => $insuranceCompanies,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-        <?php echo $this->Form->control("insurance_policy_id2",['id'=>'', 'options' => $insurancePolicies,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-        <?php echo $this->Form->control("premium2",['id'=>'', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','required'=>false]); ?>
-      </div>
-      <div class="col-3">
-        <?php echo '<label for="make">Term Length</label>';
-            echo $this->Form->select('term_length2', [
-              '3 month'=>'3 Month',
-              '6 month'=> '6 Month',
-              '9 month'=>'9 Month',
-            ],
-            ['class'=>'form-control p-2'],
-          );
-          ?>
-      </div>
-      <?php                
-              echo $this->Form->control('status2',['value'=>'1','class'=>'clt','label'=>false]);
-              echo $this->Form->control('deleted2',['value'=>'1','class'=>'clt','label'=>false]);
-              ?>
-          
-          <?php echo $this->Form->control('policy_status2',['value'=>'1', 'class'=>'clt','label'=>false]); ?> -->
-          
-          
-          
-          <div class="mt-3">
-        <?= $this->Form->button(__('Submit'),['class'=>'btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn edit-data']) ?>
-        
-      </div>
-      <?= $this->Form->end() ?> 
-    </div>
+    <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
+
 
   </div>
 
@@ -377,19 +389,21 @@ th {
                 <?php echo $this->Form->control("insurance_company_id",['id'=>'', 'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
                 </div>
                 <div class="form-group">    
-                <?php echo $this->Form->control("insurance_policy_id",['id'=>'', 'options' => $insurancePolicies,'class'=>'form-control form-control-lg','id'=>'insurancecomapny','required'=>false]); ?>
+                <?php echo $this->Form->control("insurance_policy_id",['id'=>'', 'options' => $insurancePolicies,'class'=>'form-control form-control-lg','id'=>'policyname','required'=>false]); ?>
               </div>
                 <div class="form-group">     
-                <?php echo $this->Form->control("premium",['label'=> false,'id'=>'insurancesscomapny', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','required'=>false]); ?>
+                <?php echo $this->Form->control("premium",['id'=>'', 'options' => $insurancePremium,'class'=>'form-control form-control-lg','id'=>'premiumnumber','required'=>false]); ?>
                 </div>
                 <label>Term Length</label><br>
-                  <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month']) ?>
-                  <?php                
-                   echo $this->Form->control('status',['class'=>'clt','label'=>false]);
-                   echo $this->Form->control('deleted',['class'=>'clt','label'=>false]);
-                   ?>
-          
-                   <?php echo $this->Form->control('policy_status',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
+                  <?php echo $this->Form->radio('term_length',['3 month'=>'3 Month','6 month'=> '6 Month', '9 month'=>'9 Month'],['required'=>true]) ?>
+                  <span class="errorTxt text-danger"></span>
+                <?php                
+                // echo $this->Form->control('term_length',['class'=>'clt','label'=>false]);
+                    echo $this->Form->control('status',['class'=>'clt','label'=>false]);
+                    echo $this->Form->control('deleted',['class'=>'clt','label'=>false]);
+?>
+                <?php echo $this->Form->control('policy_status',['value'=>'1', 'class'=>'clt','label'=>false]); ?>
+
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
                   <?= $this->Form->button(__('Submit'),['class'=>'btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn edit-data']) ?>
@@ -404,10 +418,81 @@ th {
       </div>
      </div>
     </div>
-   </div>
-</div> -->
+  </div>
+</div>
 
+<script>
+        $(document).ready(function() {
+            var csrfToken = $('meta[name="csrfToken"]').attr('content');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
+                }
+            });
+            $("#policyname").on('change', function() {
 
+                var id = $(this).val();
+                //  alert(id);
+                // return false;
+                $("#premiumnumber").find('option').remove();
+                // $("#color").find('option').remove();
+                // if (id) {
+                // var dataString = 'id=' + id;
+                // alert(dataString);
+                // return false;
+                $.ajax({
+                    type: "post",
+                    url: '/contact-listings/getpremium',
+                    data: {
+                        'id': id
+                    },
+                    cache: false,
+                    success: function(html) {
+                        // $('.modeldiv').html(response);
+                        // $("#loding1").hide();
+
+                        //   alert(response);
+                        // alert('ghhjjhnjk');
+
+                        $.each(html, function(key, value) {
+                            // alert(value);
+                            $('<option>').val(value.id).text('select');
+                            $("#premiumnumber").append('<option value=' + value.id + '>' + value.premium + '</option>');
+                            //  $('<option>').text(value).appendTo($("#car_model"));
+                        });
+                        // $('.')
+                    }
+                });
+                // }
+            });
+            });
+
+  </script>
+  <script>
+window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("contentToPrint");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+              margin: [1, -2.5, 0, 0], 
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
+
+const theButton = document.querySelector("#download");
+
+theButton.addEventListener("click", () => {
+    theButton.classList.add("button--loading");
+});
+  </script>
+  <?= $this->Html->script(['pdf']); ?>
 <script>
   $(document).on("click", ".delete-policy", function(){
     var csrfToken = $('meta[name="csrfToken"]').attr('content');
@@ -417,15 +502,15 @@ th {
       }
     });
     var formData = $(this).attr("deletepolicy-id");
+
     var statusData = $(this).attr("status-id");
-    // alert(formData);
    
       // alert(formData+statusData);
       // alert(formData);
       // var statusData = $(this).attr("status-id");
   
         swal({
-        title: "Are you sure to delete this ?",
+        title: "Are you sure to delete this  of ?",
         text: "Delete Confirmation?",
         type: "warning",
         showCancelButton: true,
@@ -445,10 +530,10 @@ th {
                     var dataArr = JSON.parse(response);
                     if(dataArr.status ==1 ){
                       $("#data"+formData).hide();
-                    }
-                    // $('#change-status').load('contact-listings/view');
-                    location.reload('contact-listings/view/');
+                      location.reload('/contact-listings/view/ #change-status');
 
+          
+                    }
                   }
               }).done(function(data) {
                   swal("Deleted!", "Data successfully Deleted!", "success");
@@ -460,3 +545,21 @@ th {
         )
   });  
 </script>  
+
+
+<script>
+// just for the demos, avoids form submit
+jQuery(function($) {
+  var validator = $('#formid').validate({
+    rules: {
+      term_length: {
+        required: true
+      }
+      
+    },
+    messages: {},
+    errorElement : 'div',
+    errorLabelContainer: '.errorTxt'
+  });
+});
+</script>

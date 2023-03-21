@@ -1,8 +1,10 @@
   <?php echo $this->element("sidebar"); ?>
       <!-- partial -->
+
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
+          <?php echo $this->Flash->render(); ?>
 
          <div class="col-12">
       <div class="content-wrapper d-flex align-items-center auth px-0">
@@ -59,6 +61,10 @@
             </div>
           </div>
         </div>
+        <a  class="whats-app" href="https://web.whatsapp.com/" target="_blank">
+    <!-- <i class="fa fa-whatsapp my-float"></i> -->
+    <i class="fa-brands fa-whatsapp my-float"></i>
+</a>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -78,3 +84,5 @@
 
 
   <?= $this->Html->script('script1') ?>
+
+  
