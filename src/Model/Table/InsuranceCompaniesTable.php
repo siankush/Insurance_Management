@@ -40,6 +40,11 @@ class InsuranceCompaniesTable extends Table
         $this->setTable('insurance_companies');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('InsuranceCompanies',[
+        
+            'foreignKey' => 'insurance_company_id',
+        ]);
     }
 
     /**
@@ -58,4 +63,9 @@ class InsuranceCompaniesTable extends Table
 
         return $validator;
     }
+    // public function myfun(){
+       
+    //     $insuranceCompanies = $this->InsuranceCompanies->find("all")->all();
+       
+    // }
 }

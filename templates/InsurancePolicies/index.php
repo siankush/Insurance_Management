@@ -84,10 +84,7 @@ input#searchbox {
 
 <div class="container-fluid">
 <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICIES LISTINGS</h1>
-<<<<<<< HEAD
-=======
 <?= $this->Form->control('key',['label'=>false,'placeholder'=>'Search And Enter','id'=>'searchbox']) ?>
->>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 <a href="/insurance-policies/add" class="addcomp">Add Policy</a>
 
         <table class="table table-hover" id="datatablesSimple" >

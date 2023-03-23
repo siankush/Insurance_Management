@@ -126,4 +126,5 @@ class CompanyAssetsTable extends Table
 
         return $rules;
     }
+   
 }

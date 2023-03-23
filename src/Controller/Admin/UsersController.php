@@ -4,51 +4,6 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 use App\Controller\AppController;
 
-<<<<<<< HEAD
-/**
- * Users Controller
- *
- * @property \App\Model\Table\UsersTable $Users
- * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
-class UsersController extends AppController
-{
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function admin(){
-        $this->loadModel('Users');
-        $this->loadModel('InsuranceCompanies');
-        $this->loadModel('InsurancePolicies');
-        $this->loadModel('CompanyAssets');
-                $this->viewBuilder()->setLayout('admin');
-
-                $insuranceCompanies = $this->InsuranceCompanies->find('all')->all();
-                $insurancePolicies = $this->InsurancePolicies->find('all')->all();
-                $user = $this->Users->find('all')->all();
-                // $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->all();    
-                // dd($companyAssetss);    
-
-                $companyAssetss = $this->CompanyAssets->find('all')->contain(['InsurancePolicies'])->all();      
-                
-                
-                $companyAssets = $this->paginate($this->CompanyAssets->find('all')
-        ->contain(['Users', 'InsuranceCompanies', 'InsurancePolicies','ContactListings'])
-        ->where(['checkstatus' => 0]),
-        ['limit' => 10,
-        'order' => [
-            'id' => 'desc',
-        ],    
-        ]
-        
-    );
-
-                $this->set(compact('user' ,'insuranceCompanies','insurancePolicies','companyAssetss','companyAssets'));
-
-=======
->>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
 // Class for users start
 
@@ -58,19 +13,23 @@ class UsersController extends AppController
 
     public function admin()
     {
-        $this->loadModel("Users");
-        $this->loadModel("InsuranceCompanies");
-        $this->loadModel("InsurancePolicies");
-        $this->loadModel("CompanyAssets");
+        // $this->loadModel("Users");
+        $insurancecompany = $this->loadModel("InsuranceCompanies");
+        $insurancepolicy = $this->loadModel("InsurancePolicies");
+        $companyasset = $this->loadModel("CompanyAssets");
         $this->viewBuilder()->setLayout("admin");
         $user = $this->Authentication->getIdentity();
         $insuranceCompanies = $this->InsuranceCompanies->find("all")->all();
         $insurancePolicies = $this->InsurancePolicies->find("all")->all();
+        // $insurancepolicy->admin();
+
+        
         $user = $this->Users->find("all")->all();
         $companyAssetss = $this->CompanyAssets
             ->find("all")
             ->contain(["InsurancePolicies"])
             ->all();
+       
         $this->set(
             compact(
                 "user",
@@ -242,11 +201,6 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
         if ($result && $result->isValid()) {
             $user = $this->Authentication->getIdentity();
-<<<<<<< HEAD
-            // dd($user);
-            // dd($user);
-=======
->>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
             if ($user->auth == 0) {
                 return $this->redirect("/admin/users/admin");
             } elseif ($user->auth == 1) {

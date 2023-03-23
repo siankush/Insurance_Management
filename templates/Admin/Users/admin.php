@@ -123,7 +123,7 @@ to {
 .origin{text-decoration:none;
 font-size:45px;}
 </style>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script> -->
 	<!-- Preloader -->
 		<div id="preloader">
 			<div id="container" class="container-preloader">
@@ -149,7 +149,7 @@ font-size:45px;}
 				<div class="loader-section section-right"></div>
 			</div>
 		</div>	
-<?php echo $this->element('sidebar1') ?>
+
 <style>
 .couter_icon i {
     color: #00c6b5;
@@ -252,7 +252,7 @@ p {
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>
-                                 <li><a href="/CompanyAssets/index"><i class="fa fa-bell-o"></i><span class="badge"><?php echo count($companyAssets); ?></span></a></li>
+                                 <li><a href="/CompanyAssets/index"><i class="fa fa-bell-o"></i><span class="badge"><?php echo count($companyAssetss); ?></span></a></li>
                                  <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
                                  <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
                               </ul>

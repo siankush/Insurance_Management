@@ -65,11 +65,7 @@ class InsurancePoliciesTable extends Table
             ->scalar('name')
             ->maxLength('name', 50)
             ->requirePresence('name', 'create')
-<<<<<<< HEAD
-            ->notEmptyString('name','please enter insurance policy');
-=======
             ->notEmptyString('name','Please fill the name');
->>>>>>> 86742c0ca2bf73cd43b886b7be19986701036fc9
 
         // $validator
         //     ->allowEmptyFile('image')
@@ -104,4 +100,9 @@ class InsurancePoliciesTable extends Table
 
         return $rules;
     }
+    // public function myfun(){
+        
+    //   $insurancePolicies = $this->InsurancePolicies->find("all")->all();
+
+    // }
 }

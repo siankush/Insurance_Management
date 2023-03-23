@@ -100,10 +100,7 @@ class UsersController extends AppController
                 // ]);
                 $this->Flash->error(__('you are not authorised'));
 
-                return $this->redirect('/users/logout');
-
-                
-
+                return $this->redirect('/users/logout');            
                 
             } elseif ($user->auth == 1) {
                 // $redirect = $this->request->getQuery('redirect', [
@@ -187,6 +184,7 @@ class UsersController extends AppController
             ->contain(["InsurancePolicies"])
             ->where(["insurance_policy_id" => $user->id])
             ->all();
+    
         $this->set(compact("user", "companyAssetss", "contact"));
     }
 }

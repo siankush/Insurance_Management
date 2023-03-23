@@ -68,7 +68,7 @@
  */
 ?>
 <?php echo $this->element('sidebar1') ?>
-<style>
+<style> 
 a.addcomp {
     float: right;
     /* margin-top: -92px; */
@@ -118,7 +118,7 @@ a.addcomp {
 <div class="insurancesCompany index content" style="margin-top: 120px;" id='change-status'>
     
 <div class="container-fluid">
-<h3>Total Policies : <span class="badge"><?php echo count($companyAssets); ?></span></h3>
+<h3>Total Policies : <span class="badge"><?php echo ($count); ?></span></h3>
     <h1 style="padding-bottom:70px; text-align:center;font-weight:800;font-size:35px;">POLICY UNAPPROVED LISTS</h1>
     <!-- <a href="/insurance-companies/add" class="addcomp">Add Company</a> -->
     <table class="table table-hover" >
@@ -128,11 +128,16 @@ a.addcomp {
                     <th>ID</th>
                     <th>AGENT ID</th>
                     <th>USER NAME</th>
-                    <th><?= $this->Paginator->sort('insurance_company_id') ?></th>
+                    <th>INSURANCE COMPANY</th>
+                    <th>INSURANCE POLICY</th>
+                    <th>PREMIUM</th>
+                    <th>IMAGE</th>
+                    <th><?php echo strtoupper('term length'); ?></th>
+                    <!-- <th><?= $this->Paginator->sort('insurance_company_id') ?></th>
                     <th><?= $this->Paginator->sort('insurance_policy_id') ?></th>
                     <th><?= $this->Paginator->sort('premium') ?></th>
                     <th><?= $this->Paginator->sort('image') ?></th>
-                    <th><?= $this->Paginator->sort('term_length') ?></th>
+                    <th><?= $this->Paginator->sort('term_length') ?></th> -->
 
                     <th class="actions">ACTIONS</th>
             </tr>
