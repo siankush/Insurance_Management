@@ -171,3 +171,16 @@ class UsersController extends AppController
 
     }
 }
+
+//  $contactListings = $this->paginate(
+//             $this->ContactListings
+//                 ->find("all")
+//                 ->contain("CompanyAssets")
+//                 ->where(["ContactListings.user_id" => $id,"deletestatus"=>1,'Or' => ['name like' => '%' . $key . '%','email like' => '%' . $key . '%']]),
+//             [
+//                 "limit" => 10,
+//                 "order" => [
+//                     "id" => "desc",
+//                 ],
+//             ]
+//         );
